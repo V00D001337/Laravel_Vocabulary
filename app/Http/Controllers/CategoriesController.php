@@ -16,4 +16,19 @@ class CategoriesController extends Controller
         $categories = Categories::all();
         return view('categories.index', ['categories' => $categories]);
     }
+    
+    public function create()
+    {
+            return view('categories.create');
+    }
+
+    public function store(Request $request)
+    {
+        $categories = new Categories;
+        $categories->name = $request->input('name');
+        $categories->description = $request->input('description');
+        $categories->picture_file_name = $request->input('picture_file_name');
+        $categories->save();
+            return redirect()->action('CategoriesController@index');
+    }
 }

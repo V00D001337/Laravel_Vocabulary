@@ -27,4 +27,9 @@
 @endif
 @endforeach
 </div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <a href="{{ action('CategoriesController@create') }}" class="btn btn-info">Nowa Kategoria</a>
+    </div>
+</div>
 @endsection
