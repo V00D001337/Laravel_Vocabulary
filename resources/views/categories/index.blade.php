@@ -14,12 +14,13 @@
 
 <div class="row">
 @foreach($categories as $category)
-    <div class="col-md-4">
-        <img src="./resources/img/{{$category->picture_file_name}}"/>
-        <td>{{ $category->name }}</td>
-        <td>{{ $category->description }}</td>
+    <div class="col-md-4 text-center">
+    <a href="#">
+        <img src="./resources/img/{{$category->picture_file_name}}"/><br><br>
+        <p><strong>{{ $category->name }}</strong></p>
+    </a>
+        <p>{{ $category->description }}</p>
     </div>
 @endforeach
 </div>
-
 @endsection
