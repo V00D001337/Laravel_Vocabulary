@@ -10,7 +10,7 @@ class Sets extends Model
         'languages1_id', 'languages2_id', 'subcategories_id',
         'users_id', 'name', 'words',
         'number_of_words', 'private', 'validated',
-        'daleted' 
+        'deleted'
     ];
 
     protected $hidden = [
