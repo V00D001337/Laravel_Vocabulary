@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Subcategories;
 
 class SubcategoriesController extends Controller
 {
@@ -11,9 +12,10 @@ class SubcategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($categoryId)
     {
-        //
+        $subcategories = Subcategories::all()->where('categories_id', $categoryId);
+        return view('subcategories.index', compact('subcategories'));
     }
 
     /**

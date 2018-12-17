@@ -16,6 +16,7 @@
 
 <div class="row">
 @foreach($categories as $category)
+@if($category->hidden == 1 && $category->deleted == null)
     <div class="col-md-4 text-center">
     <a href="{{ url('/category/'.$category->id) }}">
         <img src="{{ asset('img/'.$category->picture_file_name) }}"/><br><br>
@@ -23,6 +24,7 @@
     </a>
         <p>{{ $category->description }}</p>
     </div>
+@endif
 @endforeach
 </div>
 @endsection

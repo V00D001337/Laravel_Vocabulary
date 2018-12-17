@@ -4,7 +4,7 @@
 
 <div class="page-header">
     <br>
-    <h1>Kategorie</h1>
+    <h1>Podkategorie</h1>
     <br>
 </div>
 
@@ -15,14 +15,16 @@
 </div> -->
 
 <div class="row">
-@foreach($categories as $category)
+@foreach($subcategories as $subcategory)
+@if($subcategory->hidden == 1 && $subcategory->deleted == null)
     <div class="col-md-4 text-center">
     <a href="#">
-        <img src="{{ asset('img/'.$category->picture_file_name) }}"/><br><br>
-        <p><strong>{{ $category->name }}</strong></p>
+        <img src="{{ asset('img/'.$subcategory->picture_file_name) }}"/><br><br>
+        <p><strong>{{ $subcategory->name }}</strong></p>
     </a>
-        <p>{{ $category->description }}</p>
+        <p>{{ $subcategory->description }}</p>
     </div>
+@endif
 @endforeach
 </div>
 @endsection
