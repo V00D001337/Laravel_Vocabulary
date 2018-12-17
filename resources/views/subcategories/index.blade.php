@@ -17,7 +17,7 @@
 <div class="row">
 @foreach($categories as $category)
     <div class="col-md-4 text-center">
-    <a href="{{ url('/category/'.$category->id) }}">
+    <a href="#">
         <img src="{{ asset('img/'.$category->picture_file_name) }}"/><br><br>
         <p><strong>{{ $category->name }}</strong></p>
     </a>

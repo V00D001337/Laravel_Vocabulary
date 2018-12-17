@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'CategoriesController@index')->name('home');
 
+Route::get('/category/{categoryId}', 'SubcategoriesController@index');
+
 Route::get('/pieczywo', 'PieczywoController@index');
 Route::get('/pieczywo/create', 'PieczywoController@create');
 Route::post('/pieczywo/store', 'PieczywoController@store');
