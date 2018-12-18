@@ -26,7 +26,7 @@
 @if($set->private == 0 && $set->deleted == null)
         <tr>
             <td>{{$set->name}}</td>
-            <td>{{$set->languages1_id}}o-{{$set->languages2_id}}e</td>
+            <td>{{$set->language1->name}}o-{{$set->languages2_id}}e</td>
         </tr>
 @endif
 @endforeach

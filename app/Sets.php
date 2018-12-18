@@ -16,4 +16,8 @@ class Sets extends Model
     protected $hidden = [
         'id', 'timestamps'
     ];
+
+    public function language1(){
+        return $this->belongsTo('App\Languages');
+    }
 }

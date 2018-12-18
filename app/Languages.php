@@ -14,4 +14,8 @@ class Languages extends Model
     protected $hidden = [
         'id'
     ];
+
+    // public function set(){
+    //     return $this->hasMany('App\Sets');
+    // }
 }
