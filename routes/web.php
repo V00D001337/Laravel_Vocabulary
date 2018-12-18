@@ -19,10 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'CategoriesController@index')->name('home');
 
+Route::get('/category/create', 'CategoriesController@create');
+Route::post('/category/store', 'CategoriesController@store');
+
 Route::get('/category/{categoryId}', 'SubcategoriesController@index');
 
-Route::get('/categories/create', 'CategoriesController@create');
-Route::post('/categories/store', 'CategoriesController@store');
+Route::get('/subcategory/{subcategoryId}', 'SetsController@index');
 
 Route::get('/pieczywo', 'PieczywoController@index');
 Route::get('/pieczywo/create', 'PieczywoController@create');
