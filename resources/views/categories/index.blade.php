@@ -26,10 +26,11 @@
     </div>
 @endif
 @endforeach
+<div class="col-md-4 text-center">
+        <a href="{{ action('CategoriesController@create') }}" class="btn btn-primary button-add">
+        <span class="button-add-text">+</span>
+        </a>
 </div>
-<div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{{ action('CategoriesController@create') }}" class="btn btn-info">Nowa Kategoria</a>
-    </div>
+
 </div>
 @endsection

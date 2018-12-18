@@ -26,5 +26,10 @@
     </div>
 @endif
 @endforeach
+<div class="col-md-4 text-center">
+        <a href="{{ action('SubcategoriesController@create') }}" class="btn btn-primary button-add">
+        <span class="button-add-text">+</span>
+        </a>
+</div>
 </div>
 @endsection
