@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Subcategories;
+use App\Categories;
 
 class SubcategoriesController extends Controller
 {
@@ -25,7 +26,8 @@ class SubcategoriesController extends Controller
      */
     public function create()
     {
-        return view('subcategories.create');
+        $categories = Categories::all();
+        return view('subcategories.create', ['categories' => $categories]);
     }
 
     /**
@@ -36,7 +38,13 @@ class SubcategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subcategories = new Subcategories;
+        $subcategories->categories_id = $request->input('categories_id');
+        $subcategories->name = $request->input('name');
+        $subcategories->description = $request->input('description');
+        $subcategories->picture_file_name = $request->input('picture_file_name');
+        $subcategories->save();
+            return redirect()->action("CategoriesController@index");
     }
 
     /**
