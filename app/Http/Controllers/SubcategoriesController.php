@@ -65,7 +65,7 @@ class SubcategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $categoryId)
+    public function edit($categoryId, $id)
     {
             $subcategories = Subcategories::find($id);
             return view('subcategories.update', compact('subcategories', 'id', 'categoryId'));
