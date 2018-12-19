@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subcategories;
 use App\Categories;
+use DateTime;
 
 class SubcategoriesController extends Controller
 {
@@ -66,9 +67,10 @@ class SubcategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+            $subcategories = Subcategories::find($id);
+            return view('subcategories.update', compact('subcategories','id'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -78,7 +80,12 @@ class SubcategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subcategories = Subcategories::find($id);
+        $subcategories->name = $request->input('name');
+        $subcategories->description = $request->input('description');
+        $subcategories->picture_file_name = $request->input('picture_file_name');
+        $subcategories->save();
+        return redirect()->action("SubcategoriesController@index", compact('id'));
     }
 
     /**
@@ -89,6 +96,9 @@ class SubcategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategories  = Subcategories::find($id);
+        $subcategories->deleted = new DateTime();
+        $subcategories->save();
+        return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 }
