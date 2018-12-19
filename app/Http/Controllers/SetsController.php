@@ -18,7 +18,7 @@ class SetsController extends Controller
         // $sets = Sets::all()->where('subcategories_id', $subcategoryId);
         $sets = Sets::all();
         // $sets = Sets::select("SELECT s.name, l1.name as language1, l2.name as language2 FROM sets s LEFT JOIN languages l1 on l.id = s.languages1_id LEFT JOIN languages l2 on l2.id = s.languages2_id");
-        return view('sets.index', compact('sets'));
+        return view('sets.index', compact('sets', 'subcategoryId'));
     }
 
     /**
@@ -82,8 +82,12 @@ class SetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($subcategoryId, $id)
     {
-        //
+        $sets  = Sets::find($id);
+        $sets->deleted = new DateTime();
+        $sets->save();
+
+        return redirect()->action('SetsController@index', compact('subcategoryId'));
     }
 }

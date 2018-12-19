@@ -33,6 +33,10 @@
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>
             <td>{{$set->language2->name}}</td>
+            <td>
+                
+                <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
+            </td>
         </tr>
 @endif
 @endforeach
