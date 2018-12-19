@@ -18,7 +18,12 @@
     <thead>
         <tr>
             <th>Nazwa</th>
-            <th>Słownictwo</th>
+            <th colspan="2">Tłumaczenie</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>z</th>
+            <th>na</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +31,8 @@
 @if($set->private == 0 && $set->deleted == null)
         <tr>
             <td>{{$set->name}}</td>
-            <td>{{$set->language1->name}}o-{{$set->languages2_id}}e</td>
+            <td>{{$set->language1->name}}</td>
+            <td>{{$set->language2->name}}</td>
         </tr>
 @endif
 @endforeach

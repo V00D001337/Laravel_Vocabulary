@@ -18,6 +18,10 @@ class Sets extends Model
     ];
 
     public function language1(){
-        return $this->belongsTo('App\Languages');
+        return $this->belongsTo('App\Languages', 'languages1_id', 'id');
+    }
+
+    public function language2(){
+        return $this->belongsTo('App\Languages', 'languages2_id', 'id');
     }
 }
