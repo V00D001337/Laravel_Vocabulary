@@ -20,7 +20,7 @@ class CategoriesController extends Controller
     
     public function create()
     {
-        return view('categories.create');
+            return view('categories.create');
     }
 
     public function store(Request $request)
@@ -30,8 +30,7 @@ class CategoriesController extends Controller
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
         $categories->save();
-        
-        return redirect()->action('CategoriesController@index');
+            return redirect()->action('CategoriesController@index');
     }
 
     public function edit($id)
@@ -48,11 +47,6 @@ class CategoriesController extends Controller
         $categories->picture_file_name = $request->input('picture_file_name');
         $categories->save();
 	        return redirect()->action('CategoriesController@index');
-    }
-
-    public function tryDelete($id)
-    {
-        return view('categories.delete', compact('id'));
     }
 
     public function delete($id)
