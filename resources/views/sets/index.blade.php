@@ -34,7 +34,7 @@
             <td>{{$set->language1->name}}</td>
             <td>{{$set->language2->name}}</td>
             <td>
-                
+                <a href="{{ url('/subcategory/'.$subcategoryId.'/edit/'.$set->id) }}" class="btn btn-success">Edytuj</a>
                 <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
             </td>
         </tr>
@@ -42,4 +42,7 @@
 @endforeach
     </tbody>
 </table>
+
+<a href="{{ action('SetsController@create', $subcategoryId) }}" class="btn btn-info">Nowy zestaw</a>
+
 @endsection

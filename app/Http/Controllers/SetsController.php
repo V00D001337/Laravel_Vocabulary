@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sets;
 use App\Languages;
+use Auth;
+use DateTime;
 
 class SetsController extends Controller
 {
@@ -26,9 +28,10 @@ class SetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($subcategoryId)
     {
-        //
+        $languages = Languages::all();
+        return view('sets.create', compact('subcategoryId', 'languages'));
     }
 
     /**
@@ -37,9 +40,23 @@ class SetsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $subcategoryId)
     {
-        //
+        $sets = new Sets();
+        $sets->name = $request->input('name');
+        $sets->words = $request->input('words');
+        $sets->number_of_words = $request->input('numberOfWords');
+
+        $sets->languages1_id = $request->input('language1');
+        $sets->languages2_id = $request->input('language2');
+        $sets->users_id = Auth::id();
+
+        $sets->subcategories_id = $subcategoryId;
+        $sets->private = false;
+
+        $sets->save();
+        
+        return redirect()->action('SetsController@index', compact('subcategoryId'));
     }
 
     /**
@@ -59,9 +76,11 @@ class SetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $subcategoryId)
     {
-        //
+        $languages = Languages::all();
+        $set = Sets::find($id);
+        return view('sets.update', compact('subcategoryId', 'languages', 'set', 'id'));
     }
 
     /**
@@ -71,9 +90,21 @@ class SetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $subcategoryId)
     {
-        //
+        $sets = Sets::find($id);
+        $sets->name = $request->input('name');
+        $sets->words = $request->input('words');
+        $sets->number_of_words = $request->input('numberOfWords');
+
+        $sets->languages1_id = $request->input('language1');
+        $sets->languages2_id = $request->input('language2');
+
+        $sets->subcategories_id = $subcategoryId;
+
+        $sets->save();
+        
+        return redirect()->action('SetsController@index', compact('subcategoryId'));
     }
 
     /**
