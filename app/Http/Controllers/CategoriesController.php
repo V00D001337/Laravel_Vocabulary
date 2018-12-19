@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categories;
+use DateTime;
 
 class CategoriesController extends Controller
 {
@@ -30,5 +31,17 @@ class CategoriesController extends Controller
         $categories->picture_file_name = $request->input('picture_file_name');
         $categories->save();
             return redirect()->action('CategoriesController@index');
+    }
+
+    public function tryDelete($id)
+    {
+        return view('categories.delete', compact('id'));
+    }
+
+    public function delete($id)
+    {
+        $categories  = Categories::find($id);
+        $categories->deleted = new DateTime();
+        $categories->save();
     }
 }
