@@ -16,7 +16,7 @@ class SubcategoriesController extends Controller
     public function index($categoryId)
     {
         $subcategories = Subcategories::all()->where('categories_id', $categoryId);
-        return view('subcategories.index', compact('subcategories'));
+        return view('subcategories.index', compact('subcategories', 'categoryId'));
     }
 
     /**
@@ -24,10 +24,9 @@ class SubcategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($categoryId)
     {
-        $categories = Categories::all();
-        return view('subcategories.create', ['categories' => $categories]);
+        return view('subcategories.create', compact('categoryId'));
     }
 
     /**
@@ -36,15 +35,16 @@ class SubcategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $categoryId)
     {
         $subcategories = new Subcategories;
-        $subcategories->categories_id = $request->input('categories_id');
+        $subcategories->categories_id = $categoryId;
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
         $subcategories->save();
-            return redirect()->action("CategoriesController@index");
+
+        return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 
     /**

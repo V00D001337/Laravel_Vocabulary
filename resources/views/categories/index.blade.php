@@ -8,12 +8,6 @@
     <br>
 </div>
 
-<!-- <div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{{ action('PieczywoController@create') }}" class="btn btn-info">Nowy rodzaj pieczywa</a>
-    </div>
-</div> -->
-
 <div class="row">
 @foreach($categories as $category)
 @if($category->hidden == 1 && $category->deleted == null)
@@ -24,14 +18,17 @@
     </a>
         <p>{{ $category->description }}</p>
         <a href="{{ action('CategoriesController@tryDelete', $category->id) }}" class="btn btn-danger">Usuń</a>
+        <br><br>
     </div>
 @endif
 @endforeach
     <div class="col-md-4 text-center">
-        <a href="{{ action('CategoriesController@create') }}" onclick="return confirm('Are you sure?')" class="btn btn-primary button-add">
+        <a href="{{ action('CategoriesController@create') }}" class="btn btn-primary button-add">
         <span class="button-add-text">+</span>
         </a>
     </div>
 
 </div>
 @endsection
+
+<!-- onclick="return confirm('Are you sure?')" -->
