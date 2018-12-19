@@ -26,11 +26,11 @@
     </div>
 @endif
 @endforeach
-<div class="col-md-4 text-center">
-        <a href="{{ action('CategoriesController@create') }}" class="btn btn-primary button-add">
+    <div class="col-md-4 text-center">
+        <a href="{{ action('CategoriesController@create') }}" onclick="return confirm('Are you sure?')" class="btn btn-primary button-add">
         <span class="button-add-text">+</span>
         </a>
-</div>
+    </div>
 
 </div>
 @endsection
