@@ -23,7 +23,7 @@ Route::get('/category/create', 'CategoriesController@create');
 Route::post('/category/store', 'CategoriesController@store');
 Route::get('/category/edit/{id}', 'CategoriesController@edit');
 Route::post('/category/update/{id}', 'CategoriesController@update');
-Route::get('/category/trydelete/{id}', 'CategoriesController@tryDelete');
+
 Route::get('/category/delete/{id}', 'CategoriesController@delete');
 Route::get('/category/{categoryId}', 'SubcategoriesController@index');
 Route::get('/category/{categoryId}/create', 'SubcategoriesController@create');

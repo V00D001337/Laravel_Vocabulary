@@ -18,7 +18,7 @@
     </a>
         <p>{{ $category->description }}</p>
         <a href="{{ action('CategoriesController@edit', $category->id) }}" class="btn btn-success">Edytuj</a>
-        <a href="{{ action('CategoriesController@tryDelete', $category->id) }}" class="btn btn-danger">Usuń</a>
+        <a href="{{ action('CategoriesController@delete', $category->id) }}" class="btn btn-danger" onclick="return confirm('Jesteś pewien?')">Usuń</a>
         <br><br>
     </div>
 @endif
