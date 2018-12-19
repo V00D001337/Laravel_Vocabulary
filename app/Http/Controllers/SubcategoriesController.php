@@ -78,14 +78,14 @@ class SubcategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $categoryId, $id)
     {
         $subcategories = Subcategories::find($id);
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
         $subcategories->save();
-        return redirect()->action("SubcategoriesController@index", compact('id'));
+        return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 
     /**

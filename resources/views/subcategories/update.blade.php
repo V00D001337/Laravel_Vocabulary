@@ -6,7 +6,7 @@
     <h1>Edytuj Podkategorię</h1>
 </div>
 
-<form action="{{ url('/category/'.$categoryId.'/update'.$id) }}" method="post" role="form" >
+<form action="{{ url('/category/'.$categoryId.'/update/'.$id) }}" method="post" role="form" >
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 <div class="form-group">
     <label for="name">Nazwa</label>
