@@ -25,12 +25,17 @@ Route::get('/category/edit/{id}', 'CategoriesController@edit');
 Route::post('/category/update/{id}', 'CategoriesController@update');
 Route::get('/category/trydelete/{id}', 'CategoriesController@tryDelete');
 Route::get('/category/delete/{id}', 'CategoriesController@delete');
+
 Route::get('/category/{categoryId}', 'SubcategoriesController@index');
 Route::get('/category/{categoryId}/create', 'SubcategoriesController@create');
 Route::post('/category/{categoryId}/store', 'SubcategoriesController@store');
 
 Route::get('/subcategory/{subcategoryId}', 'SetsController@index');
-Route::get('/subcategory/{subcategoryId}/delete/{id}', 'SetsController@delete');
+Route::get('/subcategory/{subcategoryId}/delete/{id}', 'SetsController@destroy');
+Route::get('/subcategory/{subcategoryId}/create', 'SetsController@create');
+Route::post('/subcategory/{subcategoryId}/store', 'SetsController@store');
+Route::get('/subcategory/{subcategoryId}/edit/{id}', 'SetsController@edit');
+Route::post('/subcategory/{subcategoryId}/update/{id}', 'SetsController@update');
 
 
 
