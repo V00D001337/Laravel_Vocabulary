@@ -43,5 +43,6 @@ class CategoriesController extends Controller
         $categories  = Categories::find($id);
         $categories->deleted = new DateTime();
         $categories->save();
+            return redirect()->action('CategoriesController@index');
     }
 }
