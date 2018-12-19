@@ -33,6 +33,22 @@ class CategoriesController extends Controller
             return redirect()->action('CategoriesController@index');
     }
 
+    public function edit($id)
+    {
+        $categories = Categories::find($id);
+        return view('categories.update', compact('categories','id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $categories = Categories::find($id);
+        $categories->name = $request->input('name');
+        $categories->description = $request->input('description');
+        $categories->picture_file_name = $request->input('picture_file_name');
+        $categories->save();
+	        return redirect()->action('CategoriesController@index');
+    }
+
     public function tryDelete($id)
     {
         return view('categories.delete', compact('id'));
