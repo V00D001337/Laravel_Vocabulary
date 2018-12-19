@@ -100,8 +100,6 @@ class SetsController extends Controller
         $sets->languages1_id = $request->input('language1');
         $sets->languages2_id = $request->input('language2');
 
-        $sets->subcategories_id = $subcategoryId;
-
         $sets->save();
         
         return redirect()->action('SetsController@index', compact('subcategoryId'));

@@ -28,7 +28,7 @@
     </thead>
     <tbody>
 @foreach($sets as $set)
-@if($set->private == 0 && $set->deleted == null)
+@if($set->private == 0 && $set->deleted == null && $set->subcategories_id == $subcategoryId)
         <tr>
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>
