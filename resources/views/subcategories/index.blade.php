@@ -8,12 +8,6 @@
     <br>
 </div>
 
-<!-- <div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{{ action('PieczywoController@create') }}" class="btn btn-info">Nowy rodzaj pieczywa</a>
-    </div>
-</div> -->
-
 <div class="row">
 @foreach($subcategories as $subcategory)
 @if($subcategory->hidden == 1 && $subcategory->deleted == null)

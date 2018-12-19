@@ -14,11 +14,12 @@
     </div>
 </div> -->
 
-<table class="table .table-striped .table-bordered">
+<table class="table table-hover table-bordered">
     <thead class="thead-dark">
         <tr>
             <th rowspan="2">Nazwa</th>
             <th colspan="2">Tłumaczenie</th>
+            <th rowspan="2"></th>
         </tr>
         <tr>
             <th>z</th>
