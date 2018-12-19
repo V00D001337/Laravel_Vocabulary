@@ -25,9 +25,8 @@ Route::post('/category/store', 'CategoriesController@store');
 Route::get('/category/{categoryId}', 'SubcategoriesController@index');
 Route::get('/subcategory/create', 'SubcategoriesController@create');
 Route::post('/subcategory/store', 'SubcategoriesController@store');
+
 Route::get('/subcategory/{subcategoryId}', 'SetsController@index');
-
-
 Route::get('/pieczywo', 'PieczywoController@index');
 Route::get('/pieczywo/create', 'PieczywoController@create');
 Route::post('/pieczywo/store', 'PieczywoController@store');
