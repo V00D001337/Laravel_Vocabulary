@@ -21,6 +21,8 @@ Route::get('/home', 'CategoriesController@index')->name('home');
 
 Route::get('/category/create', 'CategoriesController@create');
 Route::post('/category/store', 'CategoriesController@store');
+Route::get('/category/trydelete/{id}', 'CategoriesController@tryDelete');
+Route::get('/category/delete/{id}', 'CategoriesController@delete');
 
 Route::get('/category/{categoryId}', 'SubcategoriesController@index');
 Route::get('/subcategory/create', 'SubcategoriesController@create');

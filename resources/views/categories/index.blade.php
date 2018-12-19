@@ -23,6 +23,7 @@
         <p><strong>{{ $category->name }}</strong></p>
     </a>
         <p>{{ $category->description }}</p>
+        <a href="{{ action('PiekarzController@tryDelete', $category->id) }}" class="btn btn-danger">Usuń</a>
     </div>
 @endif
 @endforeach
