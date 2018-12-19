@@ -3,21 +3,25 @@
 @section('content')
 
 <div class="page-header">
-    <h1>Edytuj rodzaj pieczywa</h1>
+    <h1>Edytuj Podkategorię</h1>
 </div>
 
-<form action="{{ action('PieczywoController@update', $p->id) }}" method="post" role="form" >
+<form action="{{ action('{{ url('/category/'.$categoryId.'/update') }}" method="post" role="form" >
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 <div class="form-group">
-    <label for="nazwa">Nazwa</label>
-    <input type="text" class="form-control" value="{{$p->nazwa}}" name="nazwa" />
+    <label for="name">Nazwa</label>
+    <input type="text" class="form-control" value="{{$subcategories->name}}" name="name" />
 </div>
 <div class="form-group">
-    <label for="skladniki">Składniki</label>
-    <textarea class="form-control" name="skladniki">{{$p->skladniki}}</textarea>
+    <label for="description">Opis</label>
+    <input type="text" class="form-control" value="{{$subcategories->description}}" name="description" />
 </div>
-<input type="submit" value="Dodaj" class="btn btn-primary" />
-<a href="{{ action('PieczywoController@index') }}" class="btn btn-link">Anuluj</a>
+<div class="form-group">
+    <label for="picture_file_name">Podaj nazwę obrazka z pliku public/img/...</label>
+    <input type="text" class="form-control" value="{{$subcategories->picture_file_name}}" name="picture_file_name" />
+</div>
+<input type="submit" value="Wykonaj" class="btn btn-primary" />
+<a href="{{ url('/category/'.$categoryId) }}" class="btn btn-link">Anuluj</a>
 </form>
 
 @endsection

@@ -17,6 +17,8 @@
         <p><strong>{{ $subcategory->name }}</strong></p>
     </a>
         <p>{{ $subcategory->description }}</p>
+        <a href="{{ action('SubcategoriesController@edit', $subcategory->id) }}" class="btn btn-success">Edytuj</a>
+        <a href="{{ action('SubcategoriesController@destroy', $subcategory->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
     </div>
 @endif
 @endforeach
