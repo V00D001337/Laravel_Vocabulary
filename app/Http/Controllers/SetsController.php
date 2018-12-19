@@ -76,7 +76,7 @@ class SetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $subcategoryId)
+    public function edit($subcategoryId, $id)
     {
         $languages = Languages::all();
         $set = Sets::find($id);
@@ -90,7 +90,7 @@ class SetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $subcategoryId)
+    public function update(Request $request, $subcategoryId, $id)
     {
         $sets = Sets::find($id);
         $sets->name = $request->input('name');
