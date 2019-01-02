@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categories;
+
 use DateTime;
 
 class CategoriesController extends Controller
@@ -26,6 +27,9 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $categories = new Categories;
+        $categories->name = $request->validate(['name' => 'required|max:100']);
+        $categories->description = $request->validate(['description' => 'required|max:255']);
+        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100']);
         $categories->name = $request->input('name');
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
@@ -42,6 +46,9 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $categories = Categories::find($id);
+        $categories->name = $request->validate(['name' => 'required|max:100']);
+        $categories->description = $request->validate(['description' => 'required|max:255']);
+        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100']);
         $categories->name = $request->input('name');
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
@@ -56,4 +63,8 @@ class CategoriesController extends Controller
         $categories->save();
             return redirect()->action('CategoriesController@index');
     }
+
+
 }
+
+
