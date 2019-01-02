@@ -144,6 +144,7 @@ return [
         ],
         'words' => [
             'required' => 'Pole "Słowa" jest wymagane!',
+            'regex' => 'Format wpisywania: "słowo_z_języka_tłumaczonego;słowo_z_języka_tłumaczenia". Kolejne tłumaczenia należy oddzielać enterami'
 
         ],
         'number_of_words' => [

@@ -44,7 +44,7 @@ class SetsController extends Controller
     {
         $sets = new Sets();
         $sets->name = $request->validate(['name' => 'required|max:100|unique:sets,name']);
-        $sets->words = $request->validate(['words' => 'required']);
+        $sets->words = $request->validate(['words' => 'required|regex:/^((([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+);([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])+)[\s])+/i']);
         $sets->number_of_words = $request->validate(['numberOfWords' => 'required']);
         $sets->languages1_id = $request->validate(['language1' => 'different:language2']);
         $sets->name = $request->input('name');
@@ -97,8 +97,8 @@ class SetsController extends Controller
     public function update(Request $request, $subcategoryId, $id)
     {
         $sets = Sets::find($id);
-        $sets->name = $request->validate(['name' => 'required|max:100|unique:sets,name']);
-        $sets->words = $request->validate(['words' => 'required']);
+        $sets->name = $request->validate(['name' => 'required|max:100']);
+        $sets->words = $request->validate(['words' => 'required|regex:/^((([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+);([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])+)[\s])+/i']);
         $sets->number_of_words = $request->validate(['numberOfWords' => 'required']);
         $sets->languages1_id = $request->validate(['language1' => 'different:language2']);
         $sets->name = $request->input('name');
