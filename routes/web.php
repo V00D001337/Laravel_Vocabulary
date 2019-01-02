@@ -59,7 +59,12 @@ Route::get('/set/{setId}/learning', function($setId){
     return view('other.showSet', compact('setId', 'set'));
 });
 
-Route::get('/set/{setId}/exam/{examId}', 'ExamController@start');
+Route::get('/set/{setId}/exam/{examId}', function($setId, $examId){
+    return view('other.algorithm', compact('setId', 'examId'));
+});
+
+Route::get('/set/{setId}/exam/{examId}/algorithm/{algorithmId}', 'ExamController@start');
+
 Route::post('/exam', 'ExamController@getNewWord');
 
 
