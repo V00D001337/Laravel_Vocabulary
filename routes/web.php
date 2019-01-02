@@ -1,5 +1,7 @@
 <?php
 
+use App\Sets;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,22 @@ Route::get('/subcategory/{subcategoryId}/create', 'SetsController@create');
 Route::post('/subcategory/{subcategoryId}/store', 'SetsController@store');
 Route::get('/subcategory/{subcategoryId}/edit/{id}', 'SetsController@edit');
 Route::post('/subcategory/{subcategoryId}/update/{id}', 'SetsController@update');
+
+Route::get('/set/{setId}', function($setId){
+    return view('other.mode', compact('setId'));
+});
+Route::get('/set/{setId}/mode/{mode}', function($setId, $mode){
+    if($mode == 0){
+        $set = Sets::find($setId);
+        return view('other.learning', compact('setId', 'set'));
+    }
+    return view('other.learning', compact('setId'));
+});
+Route::get('learning/set/{setId}', function($setId){
+    $set = Sets::find($setId);
+    return view('other.showSet', compact('setId', 'set'));
+});
+
 
 
 

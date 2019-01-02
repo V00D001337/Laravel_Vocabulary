@@ -29,7 +29,7 @@
     <tbody>
 @foreach($sets as $set)
 @if($set->private == 0 && $set->deleted == null && $set->subcategories_id == $subcategoryId)
-        <tr>
+        <tr class='clickable-row' data-href="{{ url('/set/'.$set->id) }}">
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>
             <td>{{$set->language2->name}}</td>
@@ -44,5 +44,13 @@
 </table>
 
 <a href="{{ action('SetsController@create', $subcategoryId) }}" class="btn btn-info">Nowy zestaw</a>
+
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 
 @endsection

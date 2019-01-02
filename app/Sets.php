@@ -24,4 +24,15 @@ class Sets extends Model
     public function language2(){
         return $this->belongsTo('App\Languages', 'languages2_id', 'id');
     }
+
+
+    
+    public function getLines(){
+        return explode(' ', $this->words);
+    }
+
+    public function getWords($line){
+        return explode(';', $line);
+    }
+
 }

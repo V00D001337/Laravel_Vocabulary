@@ -119,4 +119,6 @@ class SetsController extends Controller
 
         return redirect()->action('SetsController@index', compact('subcategoryId'));
     }
+
+    
 }
