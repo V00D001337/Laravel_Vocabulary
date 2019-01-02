@@ -128,8 +128,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => 'Pole "nazwa" jest wymagane!',
+            'max' => 'Nazwa nie może przekraczać 100 znaków!'
+        ],
+        'description' => [
+            'required' => 'Pole "opis" jest wymagane!',
+        ],
+        'picture_file_name' => [
+            'required' => 'Podaj nazwę obrazka!',
         ],
     ],
 

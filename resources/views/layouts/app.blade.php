@@ -78,7 +78,11 @@
                         @endguest
                     </ul>
                 </div>
-                @if ($errors->any())
+            </div>
+        </nav>
+        <div class="container">
+        <br>
+        @if ($errors->any())
                     <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -87,10 +91,6 @@
                 </ul>
                 </div>
                 @endif
-            </div>
-        </nav>
-
-        <div class="container">
         <br>
             @yield('content')
         </div>
