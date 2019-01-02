@@ -134,9 +134,19 @@ return [
         ],
         'description' => [
             'required' => 'Pole "Opis" jest wymagane!',
+            'max' => 'Opis nie może być dłuższy niż 255 znaków!',
         ],
         'picture_file_name' => [
             'required' => 'Podaj nazwę obrazka!',
+            'max' => 'Nazwa obrazka nie może być dłuższa niż 100 znaków!',
+        ],
+        'words' => [
+            'required' => 'Pole "Słowa" jest wymagane!',
+
+        ],
+        'number_of_words' => [
+            'required' => 'Pole "Liczba wyrazów" jest wymagane!',
+            
         ],
     ],
 

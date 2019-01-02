@@ -29,7 +29,7 @@ class CategoriesController extends Controller
         $categories = new Categories;
         $categories->name = $request->validate(['name' => 'required|max:100']);
         $categories->description = $request->validate(['description' => 'required|max:255']);
-        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required']);
+        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100']);
         $categories->name = $request->input('name');
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
@@ -48,7 +48,7 @@ class CategoriesController extends Controller
         $categories = Categories::find($id);
         $categories->name = $request->validate(['name' => 'required|max:100']);
         $categories->description = $request->validate(['description' => 'required|max:255']);
-        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required']);
+        $categories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100']);
         $categories->name = $request->input('name');
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');

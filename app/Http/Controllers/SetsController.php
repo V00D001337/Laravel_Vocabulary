@@ -43,6 +43,9 @@ class SetsController extends Controller
     public function store(Request $request, $subcategoryId)
     {
         $sets = new Sets();
+        $sets->name = $request->validate(['name' => 'required|max:100']);
+        $sets->words = $request->validate(['words' => 'required']);
+        $sets->number_of_words = $request->validate(['numberOfWords' => 'required']);
         $sets->name = $request->input('name');
         $sets->words = $request->input('words');
         $sets->number_of_words = $request->input('numberOfWords');
@@ -93,6 +96,10 @@ class SetsController extends Controller
     public function update(Request $request, $subcategoryId, $id)
     {
         $sets = Sets::find($id);
+        $sets->name = $request->validate(['name' => 'required|max:100']);
+        $sets->words = $request->validate(['words' => 'required']);
+        $sets->number_of_words = $request->validate(['numberOfWords' => 'required']);
+
         $sets->name = $request->input('name');
         $sets->words = $request->input('words');
         $sets->number_of_words = $request->input('numberOfWords');
