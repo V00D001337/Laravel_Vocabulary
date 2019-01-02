@@ -42,6 +42,7 @@ Route::post('/subcategory/{subcategoryId}/store', 'SetsController@store');
 Route::get('/subcategory/{subcategoryId}/edit/{id}', 'SetsController@edit');
 Route::post('/subcategory/{subcategoryId}/update/{id}', 'SetsController@update');
 
+
 Route::get('/set/{setId}', function($setId){
     return view('other.mode', compact('setId'));
 });
@@ -52,11 +53,14 @@ Route::get('/set/{setId}/mode/{mode}', function($setId, $mode){
     }
     return view('other.learning', compact('setId'));
 });
-Route::get('learning/set/{setId}', function($setId){
+
+Route::get('/set/{setId}/learning', function($setId){
     $set = Sets::find($setId);
     return view('other.showSet', compact('setId', 'set'));
 });
 
+Route::get('/set/{setId}/exam/{examId}', 'ExamController@start');
+Route::post('/exam', 'ExamController@getNewWord');
 
 
 

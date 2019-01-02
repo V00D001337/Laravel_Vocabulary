@@ -28,7 +28,7 @@ class Sets extends Model
 
     
     public function getLines(){
-        return explode(' ', $this->words);
+        return explode(PHP_EOL, $this->words);
     }
 
     public function getWords($line){
