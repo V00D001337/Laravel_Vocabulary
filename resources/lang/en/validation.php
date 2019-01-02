@@ -129,11 +129,11 @@ return [
 
     'custom' => [
         'name' => [
-            'required' => 'Pole "nazwa" jest wymagane!',
+            'required' => 'Pole "Nazwa" jest wymagane!',
             'max' => 'Nazwa nie może przekraczać 100 znaków!'
         ],
         'description' => [
-            'required' => 'Pole "opis" jest wymagane!',
+            'required' => 'Pole "Opis" jest wymagane!',
         ],
         'picture_file_name' => [
             'required' => 'Podaj nazwę obrazka!',

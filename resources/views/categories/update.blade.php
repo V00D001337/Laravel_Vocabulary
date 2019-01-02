@@ -13,7 +13,7 @@
     <input type="text" class="form-control" value="{{$categories->name}}" name="name" />
 </div>
 <div class="form-group">
-    <label for="description">Opis</label>
+    <label for="description">Opis kategorii</label>
     <input type="text" class="form-control" value="{{$categories->description}}" name="description" />
 </div>
 <div class="form-group">
