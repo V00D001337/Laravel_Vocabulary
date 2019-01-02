@@ -130,7 +130,8 @@ return [
     'custom' => [
         'name' => [
             'required' => 'Pole "Nazwa" jest wymagane!',
-            'max' => 'Nazwa nie może przekraczać 100 znaków!'
+            'max' => 'Nazwa nie może przekraczać 100 znaków!',
+            'unique' => 'Nazwy nie mogą się powtarzać!'
         ],
         'description' => [
             'required' => 'Pole "Opis" jest wymagane!',
@@ -139,6 +140,7 @@ return [
         'picture_file_name' => [
             'required' => 'Podaj nazwę obrazka!',
             'max' => 'Nazwa obrazka nie może być dłuższa niż 100 znaków!',
+            'exists' => 'Podanego obrazka nie ma w katalogu public/img/...!'
         ],
         'words' => [
             'required' => 'Pole "Słowa" jest wymagane!',
@@ -146,7 +148,9 @@ return [
         ],
         'number_of_words' => [
             'required' => 'Pole "Liczba wyrazów" jest wymagane!',
-            
+        ],
+        'language1' => [
+            'different' => '"Język tłumaczony" i "Język tłumaczenia" muszą być różne!',
         ],
     ],
 

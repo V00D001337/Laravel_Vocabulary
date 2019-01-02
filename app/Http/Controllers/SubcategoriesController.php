@@ -40,9 +40,9 @@ class SubcategoriesController extends Controller
     {
         $subcategories = new Subcategories;
         $subcategories->categories_id = $categoryId;
-        $subcategories->name = $request->validate(['name' => 'required|max:100']);
+        $subcategories->name = $request->validate(['name' => 'required|max:100|unique:subcategories,name']);
         $subcategories->name = $request->validate(['description' => 'required|max:255']);
-        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100']);
+        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100|exists:subcategories,picture_file_name']);
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
@@ -84,9 +84,9 @@ class SubcategoriesController extends Controller
     public function update(Request $request, $categoryId, $id)
     {
         $subcategories = Subcategories::find($id);
-        $subcategories->name = $request->validate(['name' => 'required|max:100']);
+        $subcategories->name = $request->validate(['name' => 'required|max:100|unique:subcategories,name']);
         $subcategories->name = $request->validate(['description' => 'required|max:255']);
-        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100']);
+        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100|exists:subcategories,picture_file_name']);
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
