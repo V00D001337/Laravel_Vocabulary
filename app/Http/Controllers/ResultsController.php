@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Results;
 use App\Charts\TestAmount;
 use DB;
+use Auth;
 
 class ResultsController extends Controller
 {
@@ -26,6 +27,20 @@ class ResultsController extends Controller
         $chart = new TestAmount();
         $chart->labels(['2 days ago', 'Yesterday', 'Today']);
         $chart->dataset('My dataset', 'line', $data);
+        $chart->title('Ilość rozwiązanych testów');
+
+        $amount = 0;
+        $sum = 0;
+        $results = Results::where('users_id', Auth::id())->get();
+        foreach($results as $result){
+            $sum += $result->percent;
+            $amount++;
+        }
+        $chart = new TestAmount();
+        $chart->labels(['Poprawne odpowiedzi', 'Niepoprawne odpowiedzi']);
+        $chart->dataset('My dataset', 'pie', [$sum/$amount, 10]);
+        $chart->title('Ilość rozwiązanych testów');
+
 
         return view('results.index', compact('chart'));
     }
