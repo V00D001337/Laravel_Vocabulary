@@ -2,12 +2,6 @@
 
 @section('content')
 
-<div class="page-header">
-    <br>
-    <h1>Wybierz sposób nauki:</h1>
-    <br>
-</div>
-
 <table class="table table-hover text-center table-bordered">
     <thead class="thead-dark">
         <tr>
