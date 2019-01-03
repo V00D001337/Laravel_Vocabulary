@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
     ],
 
     /*
@@ -224,6 +226,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
     ],
 
 ];
