@@ -12,7 +12,7 @@
         <tr>
             <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/0') }}">Wymieszaj słówka, jedna próba</a></td>
             <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/1') }}">Wymieszaj słówka, wiele prób</a></td>
-            <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/2') }}">Nie mieszaj słówek, wiele prób</a></td>
+            <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/2') }}">Nie mieszaj słówek, jedna próba</a></td>
         </tr>
     </tbody>
 </table>

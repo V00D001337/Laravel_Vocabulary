@@ -10,7 +10,7 @@
 
 <table class="table text-center table-bordered">
     <tbody>
-    @if($algorithmId == 0)
+    @if($algorithmId != 1)
         <tr>
             <td width="50%">Poprawność odpowiedzi</td>
             <td>{{$rate}}%</td>

@@ -13,7 +13,8 @@ class ExamController extends Controller
     public function start($setId, $examId, $algorithmId){
         $set = Sets::find($setId);
         $words = $set->getLines();
-        shuffle($words);
+        if($algorithmId != 2)
+            shuffle($words);
 
         Session::put('words', $words);
         Session::put('l1', $set->language1->name);
