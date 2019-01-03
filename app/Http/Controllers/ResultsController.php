@@ -40,19 +40,15 @@ class ResultsController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store($sets_id, $user_id, $date, $percent)
     {
         $results = new Results;
-        $results->sets_id = $request->input('sets_id');
-        $results->users_id = $request->input('users_id');
-        $results->date = $request->input('date');
-        $results->percent = $request->input('percent');
+        $results->sets_id = $sets_id;
+        $results->users_id = $user_id;
+        $results->date = $date;
+        $results->percent = $percent;
+        $results->save();
     }
 
     /**
