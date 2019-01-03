@@ -26,7 +26,7 @@ class ResultsController extends Controller
 
         $chart1 = new TestAmount();
         $chart1->labels(['2 dni temu', 'Wczoraj', 'Dzisiaj']);
-        $chart1->dataset('Ilość testów rozwiązanych w czasie', 'line', $data)->backgroundColor([
+        $chart1->dataset('Ilość testów rozwiązanych w ciągu ostatnich dni', 'line', $data)->backgroundColor([
             '#006dcc',
         ]);
         $chart1->title('Ilość rozwiązanych testów');
