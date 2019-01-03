@@ -14,11 +14,6 @@
     </a>
 </div>
 <div class="col-md-6 text-center">
-    <a href="{{ url('/set/'.$setId.'/mode/test') }}">
-        Własna metoda nauki
-    </a>
-</div>
-<div class="col-md-6 text-center">
     <a href="{{ url('/set/'.$setId.'/exam/0') }}">
         Tłumaczenie z {{$set->language1->name}} na {{$set->language2->name}}
     </a>
