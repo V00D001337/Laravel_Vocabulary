@@ -38,9 +38,10 @@ class ResultsController extends Controller
             $sum += $result->percent;
             $amount++;
         }
+        $amount = $amount == 0 ? 1 : $amount;
         $chart = new TestAmount();
         $chart->labels(['Poprawne odpowiedzi', 'Niepoprawne odpowiedzi']);
-        $chart->dataset('My dataset', 'pie', [$sum/$amount, 100 - $sum/$amount])->backgroundColor(['#5FC668','#C44F46'])->color(['#000000', '#000000']);
+        $chart->dataset('My dataset', 'pie', [$sum/$amount, 100 - $sum/$amount])->backgroundColor(['#5FC668','#C44F46'])->color('#000000');
         $chart->title('Poprawność podawanych odpowiedzi');
 
 
