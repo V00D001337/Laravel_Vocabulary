@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Results;
+use App\Charts\TestAmount;
+use DB;
 
 class ResultsController extends Controller
 {
@@ -14,7 +16,18 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        return 'a';
+        
+        $data = collect([]);
+
+        for ($days_backwards = 2; $days_backwards >= 0; $days_backwards--) {
+            $data->push(Results::whereDate('date', today()->subDays($days_backwards))->count());
+        }
+
+        $chart = new TestAmount();
+        $chart->labels(['2 days ago', 'Yesterday', 'Today']);
+        $chart->dataset('My dataset', 'line', $data);
+
+        return view('results.index', compact('chart'));
     }
 
     /**
