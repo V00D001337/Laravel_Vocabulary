@@ -67,7 +67,7 @@ Route::get('/set/{setId}/exam/{examId}/algorithm/{algorithmId}', 'ExamController
 Route::post('/exam', 'ExamController@getNewWord');
 Route::get('/exam/result', 'ExamController@end');
 
-
+Route::get('/result', 'ResultController@show');
 
 Route::get('/pieczywo', 'PieczywoController@index');
 Route::get('/pieczywo/create', 'PieczywoController@create');

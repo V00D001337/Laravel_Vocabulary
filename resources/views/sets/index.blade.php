@@ -8,12 +8,6 @@
     <br>
 </div>
 
-<!-- <div class="panel panel-default">
-    <div class="panel-body">
-        <a href="{{ action('PieczywoController@create') }}" class="btn btn-info">Nowy rodzaj pieczywa</a>
-    </div>
-</div> -->
-
 <table class="table table-hover table-bordered">
     <thead class="thead-dark">
         <tr>
