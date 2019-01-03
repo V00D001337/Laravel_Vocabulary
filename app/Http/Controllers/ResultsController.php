@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Results;
 
 class ResultsController extends Controller
 {
@@ -34,7 +35,11 @@ class ResultsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $results = new Results;
+        $results->sets_id = $request->input('sets_id');
+        $results->users_id = $request->input('users_id');
+        $results->date = $request->input('date');
+        $results->percent = $request->input('percent');
     }
 
     /**
@@ -68,7 +73,7 @@ class ResultsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
