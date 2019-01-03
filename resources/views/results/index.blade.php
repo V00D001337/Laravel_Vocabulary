@@ -44,7 +44,7 @@ zingchart.render({
     data:{
     "type":"bar",
     "title":{
-        "text":"Data Pulled from MySQL Database"
+        "text":"Wyniki"
     },
     "scale-x":{
         "labels":myLabels
