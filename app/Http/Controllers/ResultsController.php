@@ -24,10 +24,10 @@ class ResultsController extends Controller
             $data->push(Results::whereDate('date', today()->subDays($days_backwards))->count());
         }
 
-        $chart = new TestAmount();
-        $chart->labels(['2 days ago', 'Yesterday', 'Today']);
-        $chart->dataset('My dataset', 'line', $data);
-        $chart->title('Ilość rozwiązanych testów');
+        $chart1 = new TestAmount();
+        $chart1->labels(['2 days ago', 'Yesterday', 'Today']);
+        $chart1->dataset('My dataset', 'line', $data);
+        $chart1->title('Ilość rozwiązanych testów');
 
         $amount = 0;
         $sum = 0;
@@ -43,7 +43,7 @@ class ResultsController extends Controller
         $chart->title('Poprawność podawanych odpowiedzi');
 
 
-        return view('results.index', compact('chart'));
+        return view('results.index', compact('chart', 'chart1'));
     }
 
     /**
