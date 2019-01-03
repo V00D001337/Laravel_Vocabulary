@@ -12,9 +12,11 @@
                     {!! $chart->container() !!}
                     
                 </div>
+                
             </div>
         </div>
     </div>
 </div>
+<script src="{{ asset('js/Chart.bundle.min.js') }}" defer></script>
 {!! $chart->script() !!}
 @endsection
