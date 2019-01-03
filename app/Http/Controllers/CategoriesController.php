@@ -46,7 +46,7 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $categories = Categories::find($id);
-        $categories->name = $request->validate(['name' => 'required|max:100|unique:categories,name']);
+        $categories->name = $request->validate(['name' => 'required|max:100']);
         $categories->description = $request->validate(['description' => 'required|max:255']);
         $categories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100|exists:categories,picture_file_name']);
         $categories->name = $request->input('name');
