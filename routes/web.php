@@ -64,8 +64,8 @@ Route::get('/set/{setId}/exam/{examId}', function($setId, $examId){
 });
 
 Route::get('/set/{setId}/exam/{examId}/algorithm/{algorithmId}', 'ExamController@start');
-
 Route::post('/exam', 'ExamController@getNewWord');
+Route::get('/exam/result', 'ExamController@end');
 
 
 
