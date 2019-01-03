@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Sets;
 use App\Languages;
+use Session;
 
 class ExamController extends Controller
 {
@@ -14,38 +15,43 @@ class ExamController extends Controller
         $words = $set->getLines();
         shuffle($words);
 
-        $_SESSION['words'] = $words;
-        $_SESSION['l1'] = $set->language1->name;
-        $_SESSION['l2'] = $set->language2->name;
-        $_SESSION['wordId'] = 0;
-        $_SESSION['examId'] = $examId;
-        $_SESSION['algorithmId'] = $algorithmId;
+        Session::put('words', $words);
+        Session::put('l1', $set->language1->name);
+        Session::put('l2', $set->language2->name);
+        Session::put('wordId', 0);
+        Session::put('examId', $examId);
+        Session::put('algorithmId', $algorithmId);
+        Session::put('score', 0);
 
-        return $this->getNewWord();
+        return $this->getNewWord(new Request());
     }
 
-    public function getNewWord(){
-        $wordId = $_SESSION['wordId'];
-        $l1 = $_SESSION['l1'];
-        $l2 = $_SESSION['l2'];
+    public function getNewWord(Request $request){
+        $wordId = Session::get('wordId');
+        $l1 =  Session::get('l1');
+        $l2 =  Session::get('l2');
 
-        $words = explode(';', $_SESSION['words'][$wordId]);
-        $word = $words[$_SESSION['examId']];
+        $words = explode(';', Session::get('words')[$wordId]);
         if(Input::has('word')){
-            if(strip($words[($_SESSION['examId'] + 1) % 2]) == strip(Input::get('word'))){
+            if($this->strip($words[(Session::get('examId') + 1) % 2]) == $this->strip(Input::get('word'))){
+                Session::put('score', Session::get('score') + 1);
+            }
+            else if(Session::get('algorithmId') == 1){
+                $word = $words[Session::get('examId')];
+                return view('other.exam', compact('word', 'l1', 'l2'));
+            }
 
-            }
-            else if($_SESSION['algorithmId'] == 1){
-
-            }
-            else{
-                
-            }
+            Session::put('wordId', ++$wordId);
+            $words = $this->getWords($wordId);
         }
-        else
-            $wordId += 1;
+        $word = $words[Session::get('examId')];
+
 
         return view('other.exam', compact('word', 'l1', 'l2'));
+    }
+
+    private function getWords($wordId){
+        return explode(';', Session::get('words')[$wordId]);
     }
 
     private function strip($string){
