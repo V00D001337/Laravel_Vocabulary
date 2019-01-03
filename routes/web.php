@@ -51,6 +51,10 @@ Route::get('/set/{setId}/mode/{mode}', function($setId, $mode){
         $set = Sets::find($setId);
         return view('other.learning', compact('setId', 'set'));
     }
+    else if($mode == 1){
+        $set = Sets::find($setId);
+        return view('other.test', compact('setId', 'set'));
+    }
     return view('other.learning', compact('setId'));
 });
 
