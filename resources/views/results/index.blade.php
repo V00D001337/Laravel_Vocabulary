@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+<script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/"</script>
+
 
 <?php
 $mysqli = new mysqli("localhost", "root", "", "test");
@@ -15,14 +17,14 @@ $data=mysqli_query($mysqli,"SELECT * FROM results");
 <script>
 var myData=[<?php 
 while($info=mysqli_fetch_array($data))
-    echo $info['date'].','; /* We use the concatenation operator '.' to add comma delimiters after each data value. */
+    echo $info['percent'].','; /* We use the concatenation operator '.' to add comma delimiters after each data value. */
 ?>];
 <?php
 $data=mysqli_query($mysqli,"SELECT * FROM results");
 ?>
 var myLabels=[<?php 
 while($info=mysqli_fetch_array($data))
-    echo '"'.$info['percent'].'",'; /* The concatenation operator '.' is used here to create string values from our database names. */
+    echo '"'.$info['date'].'",'; /* The concatenation operator '.' is used here to create string values from our database names. */
 ?>];
 </script>
 
@@ -31,6 +33,8 @@ while($info=mysqli_fetch_array($data))
 /* Close the connection */
 $mysqli->close(); 
 ?>
+<body>
+  <div id='myChart'></div>
 <script>
 window.onload=function(){
 zingchart.render({
@@ -54,5 +58,6 @@ zingchart.render({
 });
 };
 </script>
+</body>
 
 @endsection
