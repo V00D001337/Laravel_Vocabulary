@@ -7,15 +7,15 @@
     <h1>Wybierz tryb:</h1>
     <br>
 </div>
+<div class="col-md-4 text-center">
 
-<div class="col-md-6 text-center">
     <a href="{{ url('/set/'.$setId.'/mode/0') }}">
-        Nauka
+        <img src = "{{ asset('img/mode_1.png') }}" />
+        <p><strong>Nauka</strong></p>
     </a>
-</div>
-<div class="col-md-6 text-center">
     <a href="{{ url('/set/'.$setId.'/mode/1') }}">
-        Sprawdzanie wiedzy
+    <img src = "{{ asset('img/mode_2.png') }}" />
+    <p><strong>Sprawdzanie Wiedzy</strong></p>
     </a>
 </div>
 
