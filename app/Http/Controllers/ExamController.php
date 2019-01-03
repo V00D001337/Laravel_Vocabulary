@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Sets;
 use App\Languages;
+use App\Results;
+use App\Http\Controllers\ResultsController;
+use DateTime;
 use Session;
+use Auth;
 
 class ExamController extends Controller
 {
@@ -64,6 +68,11 @@ class ExamController extends Controller
         $rate = ($score / $bestScore) * 100;
         $incorrect = Session::get('incorrect');
 
+        $sets_id = Session::get('setId');
+        $user_id = Auth::id();
+        $date = new DateTime();
+        $percent = $rate;
+        $this->store_results($sets_id, $user_id, $date, $percent);
 
         return view('other.result', compact('score', 'bestScore', 'rate', 'incorrect', 'algorithmId'));
     }
@@ -74,6 +83,17 @@ class ExamController extends Controller
 
     private function strip($string){
         return preg_replace('/\s+/', '', $string);
+    }
+
+    public function store_results($sets_id, $user_id, $date, $percent)
+    {
+        $results = new Results;
+        $results->sets_id = $sets_id;
+        $results->users_id = $user_id;
+        $results->date = $date;
+        $results->percent = $percent;
+        $results->timestamps = false;
+        $results->save();
     }
 
 }
