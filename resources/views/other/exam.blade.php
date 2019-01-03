@@ -2,7 +2,8 @@
 
 @section('content')
 
-<form action="{{ url('/exam') }}" method="post" role="form" >
+<form action="{{ url('/exam') }}" method="post" role="form" autocomplete="off">
+<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
 <table class="table table-bordered">
     <thead class="thead-dark">
