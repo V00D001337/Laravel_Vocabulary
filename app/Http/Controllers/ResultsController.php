@@ -14,7 +14,7 @@ class ResultsController extends Controller
      */
     public function index()
     {
-        //
+        return 'a';
     }
 
     /**
