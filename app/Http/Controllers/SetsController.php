@@ -8,6 +8,7 @@ use App\Languages;
 use App\Subcategories;
 use Auth;
 use DateTime;
+use Session;
 
 class SetsController extends Controller
 {
@@ -18,6 +19,8 @@ class SetsController extends Controller
      */
     public function index($subcategoryId)
     {
+        Session::put('subcategoryId', $subcategoryId);
+        Session::forget('setId');
         // $sets = Sets::all()->where('subcategories_id', $subcategoryId);
         $sets = Sets::all();
         // $sets = Sets::select("SELECT s.name, l1.name as language1, l2.name as language2 FROM sets s LEFT JOIN languages l1 on l.id = s.languages1_id LEFT JOIN languages l2 on l2.id = s.languages2_id");

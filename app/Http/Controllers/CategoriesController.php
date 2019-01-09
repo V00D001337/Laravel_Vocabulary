@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 
 use DateTime;
+use Session;
 
 class CategoriesController extends Controller
 {
@@ -13,6 +14,8 @@ class CategoriesController extends Controller
 
     public function index()
     {
+        Session::forget('subcategoryId');
+        
         $categories = Categories::all();
         return view('categories.index', ['categories' => $categories]);
     }

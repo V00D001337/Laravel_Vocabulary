@@ -35,6 +35,23 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Strona Główna
                 </a>
+                @if(session("categoryId"))
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    Kategoria
+                </a>
+                    @if(session("subcategoryId"))
+                    <a class="navbar-brand" href="{{ url('/category/'.session('categoryId')) }}">
+                        Podkategoria
+                    </a>
+                        @if(session("setId"))
+                        <a class="navbar-brand" href="{{ url('/subcategory/'.session('subcategoryId')) }}">
+                            Zestaw
+                        </a>
+                        @endif
+                    @endif
+                @endif
+                
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

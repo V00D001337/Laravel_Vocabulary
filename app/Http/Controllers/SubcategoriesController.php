@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Subcategories;
 use App\Categories;
 use DateTime;
+use Session;
 
 class SubcategoriesController extends Controller
 {
@@ -16,6 +17,8 @@ class SubcategoriesController extends Controller
      */
     public function index($categoryId)
     {
+        Session::put('categoryId', $categoryId);
+        Session::forget('subcategoryId');
         $subcategories = Subcategories::all()->where('categories_id', $categoryId);
         return view('subcategories.index', compact('subcategories', 'categoryId'));
     }
