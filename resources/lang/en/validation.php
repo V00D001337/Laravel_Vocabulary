@@ -153,6 +153,10 @@ return [
         'language1' => [
             'different' => '"Język tłumaczony" i "Język tłumaczenia" muszą być różne!',
         ],
+        'symbol' => [
+            'required' => 'Pole "Symbol" jest wymagane!',
+            'unique' => 'Symbole nie mogą się powtarzać!'
+        ]
     ],
 
     /*
