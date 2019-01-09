@@ -30,6 +30,8 @@
     </div>
 
 </div>
+<div>
+<a href="{{ action('LanguagesController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Języki</a>
+</div>
 @endsection
 
-<!-- onclick="return confirm('Are you sure?')" -->
