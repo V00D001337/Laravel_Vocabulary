@@ -21,7 +21,7 @@ class ResultsController extends Controller
         $data = collect([]);
 
         for ($days_backwards = 2; $days_backwards >= 0; $days_backwards--) {
-            $data->push(Results::whereDate('date', today()->subDays($days_backwards))->count());
+            $data->push(Results::where('users_id', Auth::id())->whereDate('date', today()->subDays($days_backwards))->count());
         }
 
         $chart1 = new TestAmount();

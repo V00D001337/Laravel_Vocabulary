@@ -16,10 +16,6 @@
     <textarea class="form-control" name="words">{{$set->words}}</textarea>
 </div>
 <div class="form-group">
-    <label for="numberOfWords">Liczba wyrazów</label>
-    <input type="number" value="{{$set->number_of_words}}" class="form-control" name="numberOfWords" />
-</div>
-<div class="form-group">
     <table class="table">
         <tr>
             <td>

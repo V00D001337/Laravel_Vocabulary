@@ -16,10 +16,6 @@
     <textarea class="form-control" name="words"></textarea>
 </div>
 <div class="form-group">
-    <label for="numberOfWords">Liczba wyrazów</label>
-    <input type="number" class="form-control" name="numberOfWords" />
-</div>
-<div class="form-group">
     <table class="table">
         <tr>
             <td>
