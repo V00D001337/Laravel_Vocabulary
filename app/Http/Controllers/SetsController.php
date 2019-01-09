@@ -48,7 +48,7 @@ class SetsController extends Controller
     {
         $sets = new Sets();
         $sets->name = $request->validate(['name' => 'required|max:100|unique:sets,name']);
-        $sets->words = $request->validate(['words' => 'required|regex:/^((([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+);([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])+)[\n\r])+/i']);
+        $sets->words = $request->validate(['words' => 'required|regex:/^(([a-zżźćńółęąś]+))[;](([a-zżźćńółęąś]+))/i']);
         $sets->languages1_id = $request->validate(['language1' => 'different:language2']);
         $sets->name = $request->input('name');
         $sets->words = $request->input('words');
@@ -102,7 +102,7 @@ class SetsController extends Controller
     {
         $sets = Sets::find($id);
         $sets->name = $request->validate(['name' => 'required|max:100']);
-        $sets->words = $request->validate(['words' => 'required|regex:/^((([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+);([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])+)[\n\r])+/i']);
+        $sets->words = $request->validate(['words' => 'required|regex:/^(([a-zżźćńółęąś]+))[;](([a-zżźćńółęąś]+))/i']);
         $sets->languages1_id = $request->validate(['language1' => 'different:language2']);
         $sets->name = $request->input('name');
         $sets->words = $request->input('words');
