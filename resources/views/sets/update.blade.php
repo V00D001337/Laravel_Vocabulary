@@ -15,6 +15,12 @@
     <label for="words">Słowa</label>
     <textarea class="form-control" name="words">{{$set->words}}</textarea>
 </div>
+<label for="subcategoryId">Podkategoria</label>
+<select name="subcategoryId">
+    @foreach($subcategories as $subcategory)
+        <option value="{{$subcategory->id}}" @if($set->subcategories_id == $subcategory->id) selected @endif>{{$subcategory->name}}</option>
+    @endforeach
+</select>
 <div class="form-group">
     <table class="table">
         <tr>

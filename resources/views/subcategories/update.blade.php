@@ -17,6 +17,14 @@
     <input type="text" class="form-control" value="{{$subcategories->description}}" name="description" />
 </div>
 <div class="form-group">
+<label for="categoryId">Kategoria</label>
+    <select name="categoryId">
+        @foreach($categories as $category)
+            <option value="{{$category->id}}" @if($subcategories->categories_id == $category->id) selected @endif>{{$category->name}}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
     <label for="picture_file_name">Podaj nazwę obrazka z pliku public/img/...</label>
     <input type="text" class="form-control" value="{{$subcategories->picture_file_name}}" name="picture_file_name" />
 </div>

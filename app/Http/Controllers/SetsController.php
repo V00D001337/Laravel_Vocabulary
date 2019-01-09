@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sets;
 use App\Languages;
+use App\Subcategories;
 use Auth;
 use DateTime;
 
@@ -83,7 +84,8 @@ class SetsController extends Controller
     {
         $languages = Languages::all();
         $set = Sets::find($id);
-        return view('sets.update', compact('subcategoryId', 'languages', 'set', 'id'));
+        $subcategories = Subcategories::where('deleted', null)->get();
+        return view('sets.update', compact('subcategoryId', 'languages', 'set', 'id', 'subcategories'));
     }
 
     /**
@@ -98,11 +100,11 @@ class SetsController extends Controller
         $sets = Sets::find($id);
         $sets->name = $request->validate(['name' => 'required|max:100']);
         $sets->words = $request->validate(['words' => 'required|regex:/^((([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+);([A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ])+)[\n\r])+/i']);
-        $sets->number_of_words = $request->validate(['numberOfWords' => 'required']);
         $sets->languages1_id = $request->validate(['language1' => 'different:language2']);
         $sets->name = $request->input('name');
         $sets->words = $request->input('words');
         $sets->number_of_words = substr_count($request->input('words'), ';');
+        $sets->subcategories_id = $request->input('subcategoryId');
 
         $sets->languages1_id = $request->input('language1');
         $sets->languages2_id = $request->input('language2');
