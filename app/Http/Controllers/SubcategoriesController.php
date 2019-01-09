@@ -70,8 +70,9 @@ class SubcategoriesController extends Controller
      */
     public function edit($categoryId, $id)
     {
-            $subcategories = Subcategories::find($id);
-            return view('subcategories.update', compact('subcategories', 'id', 'categoryId'));
+        $subcategories = Subcategories::find($id);
+        $categories = Categories::where('deleted', null)->get();
+        return view('subcategories.update', compact('subcategories', 'id', 'categoryId', 'categories'));
     }
     
     /**
@@ -90,6 +91,7 @@ class SubcategoriesController extends Controller
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
+        $subcategories->categories_id = $request->input('categoryId');
         $subcategories->save();
         return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
