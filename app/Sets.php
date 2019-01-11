@@ -28,7 +28,7 @@ class Sets extends Model
 
     
     public function getLines(){
-        return explode(PHP_EOL, $this->words);
+        return preg_split('/\r\n|\r|\n/', $this->words);
     }
 
     public function getWords($line){
