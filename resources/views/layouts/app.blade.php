@@ -87,7 +87,19 @@
                                         {{ __('Wyniki') }}
                                     </a>
 
-                                    
+                                    @if (Auth::user()->admin)
+
+                                    <a class="dropdown-item" href="{{ action('LanguagesController@index') }}"
+                                       >
+                                        {{ __('Języki') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ action('UserController@index') }}"
+                                       >
+                                        {{ __('Użytkownicy') }}
+                                    </a>
+
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -22,7 +22,7 @@
     </thead>
     <tbody>
 @foreach($sets as $set)
-@if($set->private == 0 && $set->deleted == null && $set->subcategories_id == $subcategoryId)
+@if($set->deleted == null && $set->subcategories_id == $subcategoryId)
         <tr class='clickable-row' data-href="{{ url('/set/'.$set->id) }}">
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>

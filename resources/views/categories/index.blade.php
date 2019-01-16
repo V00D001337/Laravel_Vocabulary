@@ -17,8 +17,10 @@
         <p><strong>{{ $category->name }}</strong></p>
     </a>
         <p>{{ $category->description }}</p>
+        @if (!Auth::guest() && Auth::user()->admin)
         <a href="{{ action('CategoriesController@edit', $category->id) }}" class="btn btn-success">Edytuj</a>
         <a href="{{ action('CategoriesController@delete', $category->id) }}" class="btn btn-danger" onclick="return confirm('Jesteś pewien?')">Usuń</a>
+        @endif
         <br><br>
     </div>
 @endif
@@ -31,10 +33,6 @@
     </div>
 @endif
 
-</div>
-<div>
-    <a href="{{ action('LanguagesController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Języki</a>
-    <a href="{{ action('UserController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Użytkownicy</a>
 </div>
 @endsection
 
