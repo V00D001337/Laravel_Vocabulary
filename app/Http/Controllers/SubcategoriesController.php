@@ -11,6 +11,7 @@ use App\User;
 use App\Users_subcategories;
 use App\User_roles;
 use App\Roles;
+use DB;
 
 class SubcategoriesController extends Controller
 {
@@ -64,9 +65,6 @@ class SubcategoriesController extends Controller
             $users_subcategories->timestamps = false;
             $users_subcategories->save();
         }
-        
-        
-
         return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 
@@ -89,9 +87,9 @@ class SubcategoriesController extends Controller
      */
     public function edit($categoryId, $id)
     {
+        $users = User::all();
         $subcategories = Subcategories::find($id);
         $categories = Categories::where('deleted', null)->get();
-        $users = User::all();
         return view('subcategories.update', compact('subcategories', 'id', 'categoryId', 'categories', 'users'));
     }
     
@@ -113,6 +111,15 @@ class SubcategoriesController extends Controller
         $subcategories->picture_file_name = $request->input('picture_file_name');
         $subcategories->categories_id = $request->input('categoryId');
         $subcategories->save();
+        $ID = $request->input('userId');
+        $SUBID = $subcategories->id;
+        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID);
+        foreach($ID as $id){
+            $users_subcategories->users_id = $id;
+            $users_subcategories->subcategories_id = $SUBID;
+            $users_subcategories->timestamps = false;
+            $users_subcategories->save();
+        }
         return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 
