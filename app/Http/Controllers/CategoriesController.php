@@ -7,6 +7,7 @@ use App\Categories;
 
 use DateTime;
 use Session;
+use Auth;
 
 class CategoriesController extends Controller
 {
@@ -16,7 +17,10 @@ class CategoriesController extends Controller
     {
         Session::forget('subcategoryId');
         
-        $categories = Categories::all();
+        if (!Auth::guest() && Auth::user()->admin)
+            $categories = Categories::all();
+        else
+            $categories = Categories::where('hidden', 1)->get();
         return view('categories.index', ['categories' => $categories]);
     }
     
@@ -53,8 +57,11 @@ class CategoriesController extends Controller
         $categories->name = $request->input('name');
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
+
+        $categories->hidden = $request->has('hidden');
+
         $categories->save();
-	        return redirect()->action('CategoriesController@index');
+        return redirect()->action('CategoriesController@index');
     }
 
     public function delete($id)
