@@ -23,7 +23,7 @@
     </div>
 @endif
 @endforeach
-@if (Auth::user()->user_role->role->id == 1)
+@if (!Auth::guest() && Auth::user()->admin)
     <div class="col-md-4 text-center">
         <a href="{{ action('CategoriesController@create') }}" class="btn btn-primary button-add">
         <span class="button-add-text">+</span>

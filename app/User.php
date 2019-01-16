@@ -32,4 +32,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\User_roles', 'id', 'users_id');
     }
 
+    public function getAdminAttribute(){
+        return $this->user_role && $this->user_role->role->id == 1;
+    }
+
 }

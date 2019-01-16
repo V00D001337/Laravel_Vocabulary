@@ -18,7 +18,7 @@
 </div>
 <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" value="{{$user->password}}" name="password" />
+    <input type="password" class="form-control" name="password" />
 </div>
 <div class="form-group">
 <label for="type">Typ użytkownika:</label>
