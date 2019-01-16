@@ -36,9 +36,9 @@
 @endforeach
     </tbody>
 </table>
-
+@auth
 <a href="{{ action('SetsController@create', $subcategoryId) }}" class="btn btn-info">Nowy zestaw</a>
-
+@endauth
 <script>
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {

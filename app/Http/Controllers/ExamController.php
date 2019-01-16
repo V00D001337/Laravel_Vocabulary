@@ -68,11 +68,15 @@ class ExamController extends Controller
         $rate = ($score / $bestScore) * 100;
         $incorrect = Session::get('incorrect');
 
-        $sets_id = Session::get('setId');
-        $user_id = Auth::id();
-        $date = new DateTime();
-        $percent = $rate;
-        $this->store_results($sets_id, $user_id, $date, $percent);
+        if(Auth::user()){
+
+            $sets_id = Session::get('setId');
+            $user_id = Auth::id();
+            $date = new DateTime();
+            $percent = $rate;
+
+            $this->store_results($sets_id, $user_id, $date, $percent);
+        }
 
         return view('other.result', compact('score', 'bestScore', 'rate', 'incorrect', 'algorithmId'));
     }
