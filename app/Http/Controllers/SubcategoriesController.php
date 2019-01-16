@@ -13,6 +13,7 @@ use App\User_roles;
 use App\Roles;
 use DB;
 
+
 class SubcategoriesController extends Controller
 {
     /**
@@ -59,7 +60,7 @@ class SubcategoriesController extends Controller
         $subcategories->save();
         $ID = $request->input('userId');
         $SUBID = $subcategories->id;
-        foreach($ID as $id){
+        foreach($ids as $id){
             $users_subcategories->users_id = $id;
             $users_subcategories->subcategories_id = $SUBID;
             $users_subcategories->timestamps = false;
