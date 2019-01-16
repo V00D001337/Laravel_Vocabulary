@@ -31,7 +31,8 @@
 
 </div>
 <div>
-<a href="{{ action('LanguagesController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Języki</a>
+    <a href="{{ action('LanguagesController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Języki</a>
+    <a href="{{ action('UserController@index') }}" class="btn btn-secondary" style = "width:100%; margin-bottom:25px;">Użytkownicy</a>
 </div>
 @endsection
 

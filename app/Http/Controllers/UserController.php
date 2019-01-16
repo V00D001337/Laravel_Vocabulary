@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', ['users' => $users]);
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('user.create');
     }
 
     /**
@@ -43,11 +43,12 @@ class UserController extends Controller
         $users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
-        $users->name = $request->input('email');
-        $users->name = $request->input('password');
+        $users->email = $request->input('email');
+        $users->password = $request->input('password');
         $users->email_verified_at = new DateTime();
         $users->save();
-            return redirect()->action('UserController@index');
+
+        return redirect()->action('UserController@index');
     }
 
     /**
@@ -70,7 +71,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
-        return view('users.update', compact('users', 'id'));
+        return view('user.update', compact('users', 'id'));
     }
 
     /**
@@ -87,11 +88,11 @@ class UserController extends Controller
         $users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
-        $users->name = $request->input('email');
-        $users->name = $request->input('password');
-        $users->email_verified_at = new DateTime();
+        $users->email = $request->input('email');
+        $users->password = $request->input('password');
         $users->save();
-            return redirect()->action('UserController@index');
+
+        return redirect()->action('UserController@index');
     }
 
     /**

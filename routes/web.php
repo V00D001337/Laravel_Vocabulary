@@ -80,3 +80,5 @@ Route::post('/exam', 'ExamController@getNewWord');
 Route::get('/exam/result', 'ExamController@end');
 
 Route::get('/result', 'ResultsController@index');
+
+Route::get('/user', 'UserController@index');
