@@ -51,7 +51,7 @@ class UserController extends Controller
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
         $users->email = $request->input('email');
-        $users->password = $request->input('password');
+        $users->password = bcrypt($request->input('password'));
         //$users->email_verified_at = new DateTime();
         $users->save();
 
@@ -105,7 +105,7 @@ class UserController extends Controller
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
         $users->email = $request->input('email');
-        $users->password = $request->input('password');
+        $users->password = bcrypt($request->input('password'));
         $users->save();
 
         $type = $request->input('type');
