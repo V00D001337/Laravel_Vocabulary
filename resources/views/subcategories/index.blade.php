@@ -10,7 +10,7 @@
 
 <div class="row">
 @foreach($subcategories as $subcategory)
-@if($subcategory->hidden == 1 && $subcategory->deleted == null)
+@if($subcategory->deleted == null)
     <div class="col-md-4 text-center">
     <a href="{{ url('/subcategory/'.$subcategory->id) }}">
         <img src="{{ asset('img/'.$subcategory->picture_file_name) }}"/><br><br>

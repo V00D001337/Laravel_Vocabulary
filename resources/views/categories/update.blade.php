@@ -21,7 +21,7 @@
     <input type="text" class="form-control" value="{{$categories->picture_file_name}}" name="picture_file_name" />
 </div>
 <div class="form-group">
-    <label><input type="checkbox" name="private" @if($categories->hidden == 0) checked @endif> Ukryta</label>
+    <label><input type="checkbox" name="hidden" @if($categories->hidden == 0) checked @endif> Ukryta</label>
 </div>
 <input type="submit" value="Wykonaj" class="btn btn-primary" />
 <a href="{{ action('CategoriesController@index') }}" class="btn btn-link">Anuluj</a>

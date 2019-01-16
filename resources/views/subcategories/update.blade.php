@@ -29,6 +29,9 @@
     <input type="text" class="form-control" value="{{$subcategories->picture_file_name}}" name="picture_file_name" />
 </div>
 <div class="form-group">
+    <label><input type="checkbox" name="hidden" @if($subcategories->hidden == 0) checked @endif> Ukryta</label>
+</div>
+<div class="form-group">
 <label for="userId">Redaktorzy:</label>
         @foreach($users as $user)
             @if($user->user_role)

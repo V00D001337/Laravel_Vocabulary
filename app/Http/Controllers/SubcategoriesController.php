@@ -12,6 +12,7 @@ use App\Users_subcategories;
 use App\User_roles;
 use App\Roles;
 use DB;
+use Auth;
 
 
 class SubcategoriesController extends Controller
@@ -25,7 +26,12 @@ class SubcategoriesController extends Controller
     {
         Session::put('categoryId', $categoryId);
         Session::forget('subcategoryId');
-        $subcategories = Subcategories::all()->where('categories_id', $categoryId);
+
+        if (!Auth::guest() && Auth::user()->admin)
+            $subcategories = Subcategories::all()->where('categories_id', $categoryId);
+        else
+            $subcategories = Subcategories::where('hidden', 1)->where('categories_id', $categoryId)->get();
+
         return view('subcategories.index', compact('subcategories', 'categoryId'));
     }
 
@@ -57,7 +63,11 @@ class SubcategoriesController extends Controller
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
+
+        $subcategories->hidden = $request->has('hidden');
+
         $subcategories->save();
+        
         $ID = $request->input('userId');
         $SUBID = $subcategories->id;
         foreach($ids as $id){
