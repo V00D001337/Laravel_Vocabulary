@@ -45,7 +45,7 @@
 </div>
 @if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
 <div class="form-group">
-    <label><input type="checkbox" name="private">Prywatny</label>
+    <label><input type="checkbox" name="hidden" @if($set->private == 1) checked @endif> Prywatny</label>
 </div>
 @endif
 <input type="submit" value="Edytuj" class="btn btn-primary" />
