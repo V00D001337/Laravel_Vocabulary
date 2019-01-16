@@ -43,9 +43,11 @@
         </tr>
     </table>
 </div>
+@if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
 <div class="form-group">
-     
+    <label><input type="checkbox" name="private">Prywatny</label>
 </div>
+@endif
 <input type="submit" value="Edytuj" class="btn btn-primary" />
 <a href="{{ url('/subcategory/'.$subcategoryId) }}" class="btn btn-link">Powrót</a>
 </form>

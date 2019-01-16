@@ -17,8 +17,10 @@
         <p><strong>{{ $subcategory->name }}</strong></p>
     </a>
         <p>{{ $subcategory->description }}</p>
+        @if (!Auth::guest() && Auth::user()->admin)
         <a href="{{ url('/category/'.$categoryId.'/edit/'.$subcategory->id) }}" class="btn btn-success">Edytuj</a>
         <a href="{{ url('/category/'.$categoryId.'/delete/'.$subcategory->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
+        @endif
     <br><br>
     </div>
 @endif

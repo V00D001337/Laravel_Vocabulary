@@ -22,7 +22,10 @@ class SetsController extends Controller
         Session::put('subcategoryId', $subcategoryId);
         Session::forget('setId');
         // $sets = Sets::all()->where('subcategories_id', $subcategoryId);
-        $sets = Sets::where('private', 0)->orWhere('users_id', Auth::id())->get();
+        if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
+            $sets = Sets::all();
+        else
+            $sets = Sets::where('private', 0)->orWhere('users_id', Auth::id())->get();
         // $sets = Sets::select("SELECT s.name, l1.name as language1, l2.name as language2 FROM sets s LEFT JOIN languages l1 on l.id = s.languages1_id LEFT JOIN languages l2 on l2.id = s.languages2_id");
         return view('sets.index', compact('sets', 'subcategoryId'));
     }
@@ -111,6 +114,9 @@ class SetsController extends Controller
 
         $sets->languages1_id = $request->input('language1');
         $sets->languages2_id = $request->input('language2');
+
+        if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
+            $sets->private = $request->has('private');
 
         $sets->save();
         

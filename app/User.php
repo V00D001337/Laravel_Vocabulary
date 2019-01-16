@@ -40,4 +40,8 @@ class User extends Authenticatable
         return $this->user_role;
     }
 
+    public function getAtLeastSuperRedactorAttribute(){
+        return $this->user_role && $this->user_role->role->id < 3;
+    }
+
 }
