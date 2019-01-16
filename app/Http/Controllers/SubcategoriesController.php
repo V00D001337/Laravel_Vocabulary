@@ -54,7 +54,6 @@ class SubcategoriesController extends Controller
      */
     public function store(Request $request, $categoryId)
     {
-        $users_subcategories = new Users_subcategories;
         $subcategories = new Subcategories;
         $subcategories->categories_id = $categoryId;
         $subcategories->name = $request->validate(['name' => 'required|max:100|unique:subcategories,name']);
@@ -67,10 +66,11 @@ class SubcategoriesController extends Controller
         $subcategories->hidden = $request->has('hidden');
 
         $subcategories->save();
-        
         $ID = $request->input('userId');
         $SUBID = $subcategories->id;
+        
         foreach($ID as $id){
+            $users_subcategories = new Users_subcategories;
             $users_subcategories->users_id = $id;
             $users_subcategories->subcategories_id = $SUBID;
             $users_subcategories->timestamps = false;
@@ -124,8 +124,9 @@ class SubcategoriesController extends Controller
         $subcategories->save();
         $ID = $request->input('userId');
         $SUBID = $subcategories->id;
-        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID);
+        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID)->delete();
         foreach($ID as $id){
+            $users_subcategories = new Users_subcategories;
             $users_subcategories->users_id = $id;
             $users_subcategories->subcategories_id = $SUBID;
             $users_subcategories->timestamps = false;
