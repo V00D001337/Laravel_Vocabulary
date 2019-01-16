@@ -21,7 +21,7 @@
         <tr>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>{{$user->user_role->roles_id}}</td>
+            <td>@if($user->user_role) {{$user->user_role->role->name}} @else Użytkownik @endif</td>
         </tr>
     @endforeach
     </tbody>

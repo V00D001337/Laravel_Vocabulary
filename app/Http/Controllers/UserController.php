@@ -20,7 +20,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        echo $users[0]->user_role->role->name;
         return view('user.index', ['users' => $users]);
     }
 
