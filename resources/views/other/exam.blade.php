@@ -15,7 +15,7 @@
     <tbody>
         <tr>
             <td>{{$word}}</td>
-            <td><input type="text" class="form-control" name="word" /></td>
+            <td><input type="text" class="form-control" name="word" autofocus/></td>
         </tr>
     </tbody>
 </table>

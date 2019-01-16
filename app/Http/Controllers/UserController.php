@@ -7,6 +7,8 @@ use App\User;
 use App\Users_subcategories;
 use App\User_roles;
 use App\Roles;
+use Auth;
+use DB;
 
 use DateTime;
 
@@ -30,7 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $roles = Roles::all();
+
+        return view('user.create', compact('roles'));
     }
 
     /**
@@ -43,13 +47,21 @@ class UserController extends Controller
     {
         $users = new User;
         $users->name = $request->validate(['name' => 'required|max:100']);
-        $users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
+        //$users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
         $users->email = $request->input('email');
         $users->password = $request->input('password');
-        $users->email_verified_at = new DateTime();
+        //$users->email_verified_at = new DateTime();
         $users->save();
+
+        $type = $request->input('type');
+        if($type >= 0){
+            $role = new User_roles;
+            $role->users_id = $users->id;
+            $role->roles_id = $type;
+            $role->save();
+        }
 
         return redirect()->action('UserController@index');
     }
@@ -73,8 +85,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = User::find($id);
-        return view('user.update', compact('users', 'id'));
+        $user = User::find($id);
+        $roles = Roles::all();
+        return view('user.update', compact('user', 'roles', 'id'));
     }
 
     /**
@@ -88,12 +101,28 @@ class UserController extends Controller
     {
         $users = User::find($id);
         $users->name = $request->validate(['name' => 'required|max:100']);
-        $users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
+        //$users->email = $request->validate(['email' => 'required|regex:^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$']);
         $users->password = $request->validate(['password' => 'required|max:191']);
         $users->name = $request->input('name');
         $users->email = $request->input('email');
         $users->password = $request->input('password');
         $users->save();
+
+        $type = $request->input('type');
+
+        if($users->user_role){
+            if($type < 0)
+                DB::delete("delete from User_roles where users_id = $id");
+            else{
+                DB::update("update User_roles set roles_id = $type where users_id = $id");
+            }
+        }
+        else if($type >= 0){
+            $role = new User_roles;
+            $role->users_id = $id;
+            $role->roles_id = $type;
+            $role->save();
+        }
 
         return redirect()->action('UserController@index');
     }

@@ -82,3 +82,7 @@ Route::get('/exam/result', 'ExamController@end');
 Route::get('/result', 'ResultsController@index');
 
 Route::get('/user', 'UserController@index');
+Route::get('/user/create', 'UserController@create');
+Route::post('/user/store', 'UserController@store');
+Route::get('/user/edit/{id}', 'UserController@edit');
+Route::post('/user/update/{id}', 'UserController@update');

@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     @foreach($users as $user)
-        <tr>
+        <tr class='clickable-row' data-href="{{ url('/user/edit/'.$user->id) }}">
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>@if($user->user_role) {{$user->user_role->role->name}} @else Użytkownik @endif</td>
@@ -26,7 +26,11 @@
     @endforeach
     </tbody>
 </table>
+
+<a href="{{ action('UserController@create') }}" class="btn btn-info">Nowy użytkownik</a>
+
 </div>
+
 
 <script>
 jQuery(document).ready(function($) {
