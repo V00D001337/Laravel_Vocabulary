@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Users_subcategories;
+use App\User_roles;
+use App\Roles;
 
 use DateTime;
 
@@ -17,6 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        echo $users[0]->user_role->role->name;
         return view('user.index', ['users' => $users]);
     }
 
