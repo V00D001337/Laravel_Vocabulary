@@ -156,7 +156,15 @@ return [
         'symbol' => [
             'required' => 'Pole "Symbol" jest wymagane!',
             'unique' => 'Symbole nie mogą się powtarzać!'
-        ]
+        ],
+        'email' => [
+            'regex' => 'Wpisz poprawny email!',
+            'required' => 'Wpisz adres email!'
+        ],
+        'password' => [
+            'required' => 'Wpisz hasło!',
+            'max' => 'Hasło maksymalnie 191 znaków!'
+        ],
     ],
 
     /*
