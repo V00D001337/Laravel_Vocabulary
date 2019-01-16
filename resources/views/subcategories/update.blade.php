@@ -28,6 +28,15 @@
     <label for="picture_file_name">Podaj nazwę obrazka z pliku public/img/...</label>
     <input type="text" class="form-control" value="{{$subcategories->picture_file_name}}" name="picture_file_name" />
 </div>
+<div class="form-group">
+<label for="userId">Redaktorzy:</label>
+        @foreach($users as $user)
+            @if($user->user_role)
+                <br>
+                <label><input type="checkbox" name="userId[]" value="{{$user->id}}"> {{$user->name}} </label>
+            @endif
+        @endforeach
+</div>
 <input type="submit" value="Wykonaj" class="btn btn-primary" />
 <a href="{{ url('/category/'.$categoryId) }}" class="btn btn-link">Anuluj</a>
 </form>

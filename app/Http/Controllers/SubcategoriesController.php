@@ -7,6 +7,10 @@ use App\Subcategories;
 use App\Categories;
 use DateTime;
 use Session;
+use App\User;
+use App\Users_subcategories;
+use App\User_roles;
+use App\Roles;
 
 class SubcategoriesController extends Controller
 {
@@ -30,7 +34,8 @@ class SubcategoriesController extends Controller
      */
     public function create($categoryId)
     {
-        return view('subcategories.create', compact('categoryId'));
+        $users = User::all();
+        return view('subcategories.create', compact('categoryId', 'users'));
     }
 
     /**
@@ -41,15 +46,26 @@ class SubcategoriesController extends Controller
      */
     public function store(Request $request, $categoryId)
     {
+        $users_subcategories = new Users_subcategories;
         $subcategories = new Subcategories;
         $subcategories->categories_id = $categoryId;
         $subcategories->name = $request->validate(['name' => 'required|max:100|unique:subcategories,name']);
-        $subcategories->name = $request->validate(['description' => 'required|max:255']);
-        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100|exists:subcategories,picture_file_name']);
+        $subcategories->description = $request->validate(['description' => 'required|max:255']);
+        $subcategories->picture_file_name = $request->validate(['picture_file_name' => 'required|max:100']);
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
         $subcategories->save();
+        $ID = $request->input('userId');
+        $SUBID = $subcategories->id;
+        foreach($ID as $id){
+            $users_subcategories->users_id = $id;
+            $users_subcategories->subcategories_id = $SUBID;
+            $users_subcategories->timestamps = false;
+            $users_subcategories->save();
+        }
+        
+        
 
         return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
@@ -75,7 +91,8 @@ class SubcategoriesController extends Controller
     {
         $subcategories = Subcategories::find($id);
         $categories = Categories::where('deleted', null)->get();
-        return view('subcategories.update', compact('subcategories', 'id', 'categoryId', 'categories'));
+        $users = User::all();
+        return view('subcategories.update', compact('subcategories', 'id', 'categoryId', 'categories', 'users'));
     }
     
     /**
@@ -90,7 +107,7 @@ class SubcategoriesController extends Controller
         $subcategories = Subcategories::find($id);
         $subcategories->name = $request->validate(['name' => 'required|max:100']);
         $subcategories->name = $request->validate(['description' => 'required|max:255']);
-        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100|exists:subcategories,picture_file_name']);
+        $subcategories->name = $request->validate(['picture_file_name' => 'required|max:100']);
         $subcategories->name = $request->input('name');
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
