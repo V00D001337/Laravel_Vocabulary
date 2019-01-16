@@ -36,4 +36,8 @@ class User extends Authenticatable
         return $this->user_role && $this->user_role->role->id == 1;
     }
 
+    public function getAtLeastRedactorAttribute(){
+        return $this->user_role;
+    }
+
 }

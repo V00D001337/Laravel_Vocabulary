@@ -27,10 +27,14 @@
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>
             <td>{{$set->language2->name}}</td>
+            @if (!Auth::guest() && Auth::user())
             <td>
-                <a href="{{ url('/subcategory/'.$subcategoryId.'/edit/'.$set->id) }}" class="btn btn-success">Edytuj</a>
-                <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
+                @if(Auth::user()->atLeastRedactor)
+                    <a href="{{ url('/subcategory/'.$subcategoryId.'/edit/'.$set->id) }}" class="btn btn-success">Edytuj</a>
+                    <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
+                @endif
             </td>
+            @endif
         </tr>
 @endif
 @endforeach
