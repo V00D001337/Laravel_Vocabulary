@@ -11,6 +11,6 @@ class Users_subcategories extends Model
     ];
 
     protected $hidden = [
-        
+        'timestamps'
     ];
 }
