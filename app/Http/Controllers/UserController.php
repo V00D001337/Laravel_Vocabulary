@@ -24,6 +24,7 @@ class UserController extends Controller
     {
         $users = User::all();
         $users_sub = Users_subcategories::all();
+        $subcategories = Subcategories::all();
         return view('user.index', compact('users', 'users_sub'));
     }
 

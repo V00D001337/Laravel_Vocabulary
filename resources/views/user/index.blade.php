@@ -24,15 +24,15 @@
             <td>{{$user->email}}</td>
             <td>@if($user->user_role) {{$user->user_role->role->name}} @else Użytkownik @endif</td>
             <td>
-                <input multiple name="sub_list">
+                <select multiple name="sub_list">
                     @foreach($users_sub as $us)
                     @if($user->id == $us->users_id)
                     <option value = "{{$us->users_id}}" disabled>
-                        {{$us->subcategories_id->name}}
+                        {{$us->subcategories_id}}
                     </option>
+                    @endif
                     @endforeach
-                @endif
-                </input>
+                </select>
             </td>
         </tr>
     @endforeach
