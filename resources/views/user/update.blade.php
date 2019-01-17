@@ -29,7 +29,12 @@
     <option value="-1" @if(!$user->user_role) selected @endif>Użytkownik</option>
 </select>
 </div>
-
+<div class="form-group">
+        @foreach($subcategories as $sub) 
+        <label><input type="checkbox" name="subID[]" value="{{$sub->id}}"> {{$sub->name}} </label>
+        <br>
+        @endforeach
+</div>
 <input type="submit" value="Zapisz" class="btn btn-primary" />
 <a href="{{ url('/user') }}" class="btn btn-link">Powrót</a>
 </form>
