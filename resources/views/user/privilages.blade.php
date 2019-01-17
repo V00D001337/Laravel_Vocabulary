@@ -8,7 +8,7 @@
 <p>Wybierz podkategorie aby nadać uprawnienia</p>
 <div class="form-group">
         @foreach($subcategories as $sub) 
-        <label><input type="checkbox" name="subID[]" value="{{$sub->id}}"> {{$sub->name}} </label>
+        <label><input type="checkbox" name="subID[]" value="{{$sub->id}}" @if($user->getSubcategory($sub->id)) checked  @endif> {{$sub->name}} </label>
         <br>
         @endforeach
 </div>
