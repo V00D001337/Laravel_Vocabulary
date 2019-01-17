@@ -32,8 +32,16 @@ class User extends Authenticatable
         return $this->belongsTo('App\User_roles', 'id', 'users_id');
     }
 
+    public function subcategories(){
+        return $this->hasMany('App\Users_subcategories', 'users_id', 'id');
+    }
+
     public function getAdminAttribute(){
         return $this->user_role && $this->user_role->role->id == 1;
+    }
+
+    public function getRedactorAttribute(){
+        return $this->user_role && $this->user_role->role->id == 3;
     }
 
     public function getAtLeastRedactorAttribute(){
@@ -42,6 +50,25 @@ class User extends Authenticatable
 
     public function getAtLeastSuperRedactorAttribute(){
         return $this->user_role && $this->user_role->role->id < 3;
+    }
+
+    public function getAtMostRedactorAttribute(){
+        return !$this->user_role || $this->user_role->role->id == 3;
+    }
+
+    public function getAtMostUserAttribute(){
+        return !$this->user_role;
+    }
+
+    public function getPermission($id){
+        if(!$this->user_role)
+            return false;
+        if($this->user_role->role->id == 1)
+            return true;
+        foreach($this->subcategories as $subcategory)
+            if($subcategory->subcategories_id == $id)
+                return true;
+        return false;
     }
 
 }
