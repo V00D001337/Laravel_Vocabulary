@@ -15,6 +15,7 @@
             <th>Email</th>
             <th>Typ</th>
             <th>Dostępne kategorie</th>
+            <th>Edytuj Uprawnienia</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +33,11 @@
                     </option>
                     @endforeach
                 </select>
+            @endif
+            </td>
+            <td>
+            @if($user->user_role)
+            <a href="{{ action('UserController@editPrivilages', $user->id) }}" class="btn btn-success">Edytuj</a>
             @endif
             </td>
         </tr>

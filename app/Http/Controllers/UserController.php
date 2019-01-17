@@ -128,16 +128,6 @@ class UserController extends Controller
             $role->save();
         }
 
-        $ID = $id;
-        $SUBID = $request->input('subID');
-        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID)->delete();
-        foreach($SUBID as $sid){
-            $users_subcategories = new Users_subcategories;
-            $users_subcategories->users_id = $ID;
-            $users_subcategories->subcategories_id = $sid;
-            $users_subcategories->timestamps = false;
-            $users_subcategories->save();
-        }
         return redirect()->action('UserController@index');
     }
 
@@ -150,5 +140,25 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editPrivilages($id){
+        $user = User::find($id);
+        $subcategories = Subcategories::all();
+        return view('user.privilages', compact('id', 'user', 'subcategories'));
+    }
+
+    public function updatePrivilages(Request $request, $id){
+        $ID = $id;
+        $SUBID = $request->input('subID');
+        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID)->delete();
+            foreach($SUBID as $sid){
+                $users_subcategories = new Users_subcategories;
+                $users_subcategories->users_id = $ID;
+                $users_subcategories->subcategories_id = $sid;
+                $users_subcategories->timestamps = false;
+                $users_subcategories->save();
+            }
+            return redirect()->action('UserController@index');
     }
 }

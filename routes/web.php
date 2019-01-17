@@ -86,3 +86,6 @@ Route::get('/user/create', 'UserController@create');
 Route::post('/user/store', 'UserController@store');
 Route::get('/user/edit/{id}', 'UserController@edit');
 Route::post('/user/update/{id}', 'UserController@update');
+
+Route::get('/user/editprivilages/{id}', 'UserController@editPrivilages');
+Route::post('/user/updateprivilages/{id}', 'UserController@updatePrivilages');
