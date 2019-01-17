@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>{{$user->name}}</h1>
-<form action="{{ action('UserController@editPrivilages', $user->id) }}" method="post" role="form"  autocomplete="off">
+<form action="{{ action('UserController@updatePrivilages', $user->id) }}" method="post" role="form"  autocomplete="off">
 <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 <p>Wybierz kategorie aby nadać uprawnienia</p>
 <div class="form-group">
