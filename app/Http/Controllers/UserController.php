@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Subcategories;
 use App\Users_subcategories;
 use App\User_roles;
 use App\Roles;
@@ -22,7 +23,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.index', ['users' => $users]);
+        $users_sub = Users_subcategories::all();
+        return view('user.index', compact('users', 'users_sub'));
     }
 
     /**
@@ -87,7 +89,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Roles::all();
-        return view('user.update', compact('user', 'roles', 'id'));
+        $subcategories = Subcategories::all();
+        return view('user.update', compact('user', 'roles', 'id', 'subcategories'));
     }
 
     /**
@@ -124,6 +127,16 @@ class UserController extends Controller
             $role->save();
         }
 
+        $ID = $id;
+        $SUBID = $request->input('subID');
+        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID)->delete();
+        foreach($SUBID as $sid){
+            $users_subcategories = new Users_subcategories;
+            $users_subcategories->users_id = $ID;
+            $users_subcategories->subcategories_id = $sid;
+            $users_subcategories->timestamps = false;
+            $users_subcategories->save();
+        }
         return redirect()->action('UserController@index');
     }
 

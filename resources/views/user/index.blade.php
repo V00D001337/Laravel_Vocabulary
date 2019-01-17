@@ -14,6 +14,7 @@
             <th>Nazwa</th>
             <th>Email</th>
             <th>Typ</th>
+            <th>Dostępne kategorie</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,17 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>@if($user->user_role) {{$user->user_role->role->name}} @else Użytkownik @endif</td>
+            <td>
+                <input multiple name="sub_list">
+                    @foreach($users_sub as $us)
+                    @if($user->id == $us->users_id)
+                    <option value = "{{$us->users_id}}" disabled>
+                        {{$us->subcategories_id->name}}
+                    </option>
+                    @endforeach
+                @endif
+                </input>
+            </td>
         </tr>
     @endforeach
     </tbody>
