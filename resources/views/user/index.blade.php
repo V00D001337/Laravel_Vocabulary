@@ -24,15 +24,15 @@
             <td>{{$user->email}}</td>
             <td>@if($user->user_role) {{$user->user_role->role->name}} @else Użytkownik @endif</td>
             <td>
+            @if(count($user->subcategories) > 0)
                 <select multiple name="sub_list">
-                    @foreach($users_sub as $us)
-                    @if($user->id == $us->users_id)
-                    <option value = "{{$us->users_id}}" disabled>
-                        {{$us->subcategories_id}}
+                    @foreach($user->subcategories as $s)
+                    <option value = "{{$s->info->id}}" disabled>
+                        {{$s->info->name}}
                     </option>
-                    @endif
                     @endforeach
                 </select>
+            @endif
             </td>
         </tr>
     @endforeach

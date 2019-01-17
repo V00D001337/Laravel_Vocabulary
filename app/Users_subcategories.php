@@ -13,4 +13,9 @@ class Users_subcategories extends Model
     protected $hidden = [
         'timestamps'
     ];
+
+    public function info(){
+        return $this->belongsTo('App\Subcategories', 'subcategories_id', 'id');
+    }
+
 }
