@@ -75,4 +75,11 @@ class User extends Authenticatable
         return false;
     }
 
+    public function getSubcategory($id){
+        foreach($this->subcategories as $subcategory)
+            if($subcategory->info->id == $id)
+                return true;
+        return false;
+    }
+
 }
