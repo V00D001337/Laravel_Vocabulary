@@ -151,8 +151,8 @@ class UserController extends Controller
     public function updatePrivilages(Request $request, $id){
         $ID = $id;
         $SUBID = $request->input('subID');
-        DB::table('users_subcategories')->where('subcategories_id', '=', $SUBID)->delete();
             foreach($SUBID as $sid){
+                DB::table('users_subcategories')->where('subcategories_id', '=', $sid)->delete();
                 $users_subcategories = new Users_subcategories;
                 $users_subcategories->users_id = $ID;
                 $users_subcategories->subcategories_id = $sid;
