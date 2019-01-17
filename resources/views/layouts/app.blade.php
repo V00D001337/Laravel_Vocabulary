@@ -82,10 +82,14 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
+                                    @if(Auth::user()->atMostUser)
+
                                     <a class="dropdown-item" href="{{ url('/result') }}"
                                        >
                                         {{ __('Wyniki') }}
                                     </a>
+
+                                    @endif
 
                                     @if (Auth::user()->admin)
 

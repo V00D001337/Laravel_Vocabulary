@@ -27,12 +27,10 @@
             <td>{{$set->name}}</td>
             <td>{{$set->language1->name}}</td>
             <td>{{$set->language2->name}}</td>
-            @if (!Auth::guest() && Auth::user())
+            @if (!Auth::guest() && (Auth::user()->redactor && Auth::id() == $set->users_id || Auth::user()->atLeastSuperRedactor))
             <td>
-                @if(Auth::user()->atLeastRedactor)
-                    <a href="{{ url('/subcategory/'.$subcategoryId.'/edit/'.$set->id) }}" class="btn btn-success">Edytuj</a>
-                    <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
-                @endif
+                <a href="{{ url('/subcategory/'.$subcategoryId.'/edit/'.$set->id) }}" class="btn btn-success">Edytuj</a>
+                <a href="{{ url('/subcategory/'.$subcategoryId.'/delete/'.$set->id) }}" onclick="return confirm('Jesteś pewien?')"  class="btn btn-danger">Usuń</a>
             </td>
             @endif
         </tr>
@@ -40,9 +38,10 @@
 @endforeach
     </tbody>
 </table>
-@auth
+@if(!Auth::guest() && (Auth::user()->getPermission($subcategoryId) || Auth::user()->atMostUser))
 <a href="{{ action('SetsController@create', $subcategoryId) }}" class="btn btn-info">Nowy zestaw</a>
-@endauth
+@endif
+@if(Auth::guest() || Auth::user()->atMostUser)
 <script>
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
@@ -50,5 +49,6 @@ jQuery(document).ready(function($) {
     });
 });
 </script>
+@endif
 
 @endsection
