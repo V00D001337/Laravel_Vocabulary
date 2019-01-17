@@ -63,7 +63,7 @@ class SubcategoriesController extends Controller
         $subcategories->description = $request->input('description');
         $subcategories->picture_file_name = $request->input('picture_file_name');
 
-        $subcategories->hidden = $request->has('hidden');
+        $subcategories->hidden = !$request->has('hidden');
 
         $subcategories->save();
         $ID = $request->input('userId');

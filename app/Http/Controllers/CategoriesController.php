@@ -58,7 +58,7 @@ class CategoriesController extends Controller
         $categories->description = $request->input('description');
         $categories->picture_file_name = $request->input('picture_file_name');
 
-        $categories->hidden = $request->has('hidden');
+        $categories->hidden = !$request->has('hidden');
 
         $categories->save();
         return redirect()->action('CategoriesController@index');
