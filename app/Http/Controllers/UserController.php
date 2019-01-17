@@ -154,7 +154,7 @@ class UserController extends Controller
         $user = User::find($id);
         
         foreach($user->subcategories as $subcategory)
-            DB::table('users_subcategories')->where('users_id', $user->id);
+            DB::table('users_subcategories')->where('users_id', $user->id)->delete();
         foreach($SUBID as $sid){
             $users_subcategories = new Users_subcategories;
             $users_subcategories->users_id = $ID;
