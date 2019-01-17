@@ -66,6 +66,7 @@ class SubcategoriesController extends Controller
         $subcategories->hidden = !$request->has('hidden');
 
         $subcategories->save();
+        /* 
         $ID = $request->input('userId');
         $SUBID = $subcategories->id;
         
@@ -76,6 +77,7 @@ class SubcategoriesController extends Controller
             $users_subcategories->timestamps = false;
             $users_subcategories->save();
         }
+        */
         return redirect()->action("SubcategoriesController@index", compact('categoryId'));
     }
 

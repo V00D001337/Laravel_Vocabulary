@@ -36,7 +36,7 @@
             @endif
             </td>
             <td>
-            @if($user->user_role)
+            @if($user->user_role && $user->user_role->role->name != 'Administrator')
             <a href="{{ action('UserController@editPrivilages', $user->id) }}" class="btn btn-success">Edytuj</a>
             @endif
             </td>
