@@ -44,9 +44,15 @@
     </table>
 </div>
 @if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
+@if($set->validated == null)
 <div class="form-group">
-    <label><input type="checkbox" name="hidden" @if($set->private == 1) checked @endif> Prywatny</label>
+    <label><input type="checkbox" name="validated"> Zweryfikowano</label>
 </div>
+@else
+<div class="form-group">
+    <label><input type="checkbox" name="private" @if($set->private == 1) checked @endif> Prywatny</label>
+</div>
+@endif
 @endif
 <input type="submit" value="Edytuj" class="btn btn-primary" />
 <a href="{{ url('/subcategory/'.$subcategoryId) }}" class="btn btn-link">Powrót</a>

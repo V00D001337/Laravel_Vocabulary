@@ -115,8 +115,10 @@ class SetsController extends Controller
         $sets->languages1_id = $request->input('language1');
         $sets->languages2_id = $request->input('language2');
 
-        if (!Auth::guest() && Auth::user()->atLeastSuperRedactor)
+        if($sets->validated != null)
             $sets->private = $request->has('private');
+        if($request->has('validated'))
+            $sets->validated = new DateTime();
 
         $sets->save();
         

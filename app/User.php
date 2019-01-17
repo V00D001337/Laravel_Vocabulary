@@ -44,6 +44,10 @@ class User extends Authenticatable
         return $this->user_role && $this->user_role->role->id == 3;
     }
 
+    public function getSuperRedactorAttribute(){
+        return $this->user_role && $this->user_role->role->id == 2;
+    }
+
     public function getAtLeastRedactorAttribute(){
         return $this->user_role;
     }
@@ -63,8 +67,8 @@ class User extends Authenticatable
     public function getPermission($id){
         if(!$this->user_role)
             return false;
-        if($this->user_role->role->id == 1)
-            return true;
+        // if($this->user_role->role->id == 1)
+        //     return true;
         foreach($this->subcategories as $subcategory)
             if($subcategory->subcategories_id == $id)
                 return true;
