@@ -151,14 +151,17 @@ class UserController extends Controller
     public function updatePrivilages(Request $request, $id){
         $ID = $id;
         $SUBID = $request->input('subID');
-            foreach($SUBID as $sid){
-                DB::table('users_subcategories')->where('subcategories_id', '=', $sid)->delete();
-                $users_subcategories = new Users_subcategories;
-                $users_subcategories->users_id = $ID;
-                $users_subcategories->subcategories_id = $sid;
-                $users_subcategories->timestamps = false;
-                $users_subcategories->save();
-            }
-            return redirect()->action('UserController@index');
+        $user = User::find($id);
+        
+        foreach($user->subcategories as $subcategory)
+            DB::table('users_subcategories')->where('users_id', $user->id);
+        foreach($SUBID as $sid){
+            $users_subcategories = new Users_subcategories;
+            $users_subcategories->users_id = $ID;
+            $users_subcategories->subcategories_id = $sid;
+            $users_subcategories->timestamps = false;
+            $users_subcategories->save();
+        }
+        return redirect()->action('UserController@index');
     }
 }
