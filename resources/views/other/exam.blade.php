@@ -15,7 +15,19 @@
     <tbody>
         <tr>
             <td>{{$word}}</td>
-            <td><input type="text" class="form-control" name="word" autofocus/></td>
+            <td>
+            @if($algorithmId == 5)
+                @for($i = 0; $i<$length; $i++)
+                <input type = "text" name= "w{{$i}}" maxlength = "1" size = "1"/>
+                @endfor
+            @elseif($algorithmId == 6)
+            @for($i = 0; $i<$length; $i++)
+                <input type = "text" name= "w{{$i}}" value = "{{$array[$i]}}" maxlength = "1" size = "1" @if($random == $i)disabled @endif/>
+                @endfor
+            @else
+            <input type="text" class="form-control" name="word" value="{{$letter}}" autofocus/>
+            @endif
+            </td>
         </tr>
     </tbody>
 </table>
