@@ -20,6 +20,7 @@
             <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/5') }}">Wymieszaj słówka, jedna próba, wpisywanie po 1 literze</a></td>
             <tr>
             <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/6') }}">Wymieszaj słówka, jedna próba, wpisywanie po 1 literze, podana losowa litera</a></td>
+            <td width="100px"><a href="{{ url('/set/'.$setId.'/exam/'.$examId.'/algorithm/7') }}">Wymieszaj słówka, jedna próba, wpisywanie po 1 literze, podana 1/3 wyrazu</a></td>
             </tr>
         </tr>
     </tbody>

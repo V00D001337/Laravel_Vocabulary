@@ -41,26 +41,26 @@ class ExamController extends Controller
         $algorithmId = Session::get("algorithmId");
         
         $words = $this->getWords($wordId);
-        $secondWord = $this->getSecondWord($words);
+        $secondWord = $this->strip($this->getSecondWord($words));
 
         $myWord = "QWELKJCVIOP";
         if(Input::has('word'))
         $myWord = Input::get('word');
         else if(Input::has('w0')){
-            $z = 0;
+            $z = -1;
             $myWord = "";
-            while(Input::has('w'.$z)){
-                $myWord = $myWord.Input::get('w'.($z++));
+            while(Input::has('w'.(++$z))){
+                $myWord = $myWord.Input::get('w'.$z);
             }
             
         }
 
         if($myWord != "QWELKJCVIOP"){
             
-            if($this->strip($secondWord) == $this->strip($myWord)){
+            if($secondWord == $this->strip($myWord)){
                 Session::put('score', Session::get('score') + 1);
             }
-            else if(Session::get('algorithmId') == 1){
+            else if($algorithmId == 1){
                 $word = $words[Session::get('examId')];
                 Session::put('incorrect', Session::get('incorrect') + 1);
                 return view('other.exam', compact('word', 'l1', 'l2'));
@@ -69,7 +69,9 @@ class ExamController extends Controller
             Session::put('wordId', ++$wordId);
             if($wordId == count(Session::get('words')))
                 return redirect('/exam/result');
+
             $words = $this->getWords($wordId);
+            $secondWord = $this->strip($this->getSecondWord($words));
         }
         $word = $words[Session::get('examId')];
         $letter = "";
@@ -77,18 +79,27 @@ class ExamController extends Controller
             $letter = substr($secondWord, 0, 1);
         else if ($algorithmId == 4)
             $letter = substr($secondWord, strlen($secondWord)-1 , 1);
-        if($algorithmId == 5)
+        else if($algorithmId == 5)
             $length = strlen($secondWord);
-        if($algorithmId == 6){
+        else if($algorithmId >= 6){
+
+            $amount = 1;
             $length = strlen($secondWord);
-            $letter = substr($secondWord, rand(0, $length-1 ), 1);
+            if($algorithmId == 7)
+                $amount = round($length * 0.34);
+            
             $array = array($length);
-            $random = rand(0, $length-1 );
             for($i=0; $i<$length; $i++)
                 $array[$i] = "";
-            $array[$random] = substr($secondWord, $random, 1);
+
+            for($i=0; $i<$amount; $i++){
+                do{
+                    $random = rand(0, $length-1 );
+                }while($array[$random] != "");
+                $array[$random] = substr($secondWord, $random, 1);
+            }
         }
-        return view('other.exam', compact('word', 'l1', 'l2', 'letter', 'algorithmId', 'length', 'array', 'random'));
+        return view('other.exam', compact('word', 'l1', 'l2', 'letter', 'algorithmId', 'length', 'array'));
     }
 
     function getSecondWord($words){
